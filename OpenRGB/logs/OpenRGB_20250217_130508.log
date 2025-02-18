@@ -1,0 +1,29 @@
+    OpenRGB vv1.0.0.0
+    Commit: 555 from 20220125
+    Launched: 20250217_130508
+====================================================================================================
+
+5213  |Info:    ------------------------------------------------------
+5213  |Info:    |               Start device detection               |
+5213  |Info:    ------------------------------------------------------
+5366  |Info:    [AcerECKeyboard Device] Registering RGB controller
+5577  |Info:    Initializing HID interfaces: Success
+5592  |Info:    ------------------------------------------------------
+5592  |Info:    |             Detecting I2C interfaces               |
+5592  |Info:    ------------------------------------------------------
+5614  |Info:    WMI query failed, i801 I2C bus detection aborted
+5639  |Info:    Registering I2C interface: NVidia NvAPI I2C on GPU 0 Device 10DE:28E1 Subsystem: 1025:170F
+5639  |Info:    WMI query failed, piix4 I2C bus detection aborted
+5639  |Info:    ------------------------------------------------------
+5639  |Info:    |               Detecting I2C devices                |
+5639  |Info:    ------------------------------------------------------
+5640  |Info:    ------------------------------------------------------
+5640  |Info:    |               Detecting HID devices                |
+5640  |Info:    ------------------------------------------------------
+5640  |Info:    ------------------------------------------------------
+5640  |Info:    |              Detecting other devices               |
+5640  |Info:    ------------------------------------------------------
+5868  |Info:    ------------------------------------------------------
+5868  |Info:    |                Detection completed                 |
+5868  |Info:    ------------------------------------------------------
+5869  |Dialog:  <h2>WARNING:</h2><p>One or more I2C/SMBus interfaces failed to initialize.</p><p>RGB DRAM modules and some motherboards' onboard RGB lighting will not be available without I2C/SMBus.</p><p>On Windows, this is usually caused by a failure to load the inpout32 driver.  You must run OpenRGB as administrator at least once to allow inpout32 to set up.</p><p>See <a href='https://help.openrgb.org/'>help.openrgb.org</a> for additional troubleshooting steps if you keep seeing this message.<br></p>
