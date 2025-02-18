@@ -16,15 +16,18 @@ return {
         [''] = 110,
         lua = 210,
       },
-      highlight = {
-        'RainbowDelimiterRed',
-        'RainbowDelimiterYellow',
-        'RainbowDelimiterBlue',
-        'RainbowDelimiterOrange',
-        'RainbowDelimiterGreen',
-        'RainbowDelimiterViolet',
-        'RainbowDelimiterCyan',
-      },
+highlight = {
+  'RainbowDelimiterOrange',
+  'RainbowDelimiterYellow',
+  'RainbowDelimiterGreen',
+  'RainbowDelimiterBlue',
+  'RainbowDelimiterCyan',
+  'RainbowDelimiterViolet',
+  'RainbowDelimiterPink',
+  'RainbowDelimiterTeal',
+  'RainbowDelimiterLime',
+  'RainbowDelimiterWhite',
+},
     }
   end,
 }

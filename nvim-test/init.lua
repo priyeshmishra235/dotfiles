@@ -4,14 +4,17 @@ require 'core.snippets' -- Custom code snippets
 
 -- Set up the Lazy plugin manager
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
-if not (vim.uv or vim.loop).fs_stat(lazypath) then
-  local lazyrepo = 'https://github.com/folke/lazy.nvim.git'
-  local out = vim.fn.system { 'git', 'clone', '--filter=blob:none', '--branch=stable', lazyrepo, lazypath }
-  if vim.v.shell_error ~= 0 then
-    error('Error cloning lazy.nvim:\n' .. out)
-  end
+if not (vim.uv or vim.loop).fs_stat(lazypath) then local lazyrepo =
+  'https://github.com/folke/lazy.nvim.git' local out = vim.fn.system { 'git',
+    'clone', '--filter=blob:none', '--branch=stable', lazyrepo, lazypath } if
+    vim.v.shell_error ~= 0 then error('Error cloning lazy.nvim:\n' .. out) end
 end
 vim.opt.rtp:prepend(lazypath)
+
+-- Notify if ripgrep not installed, checks on startup
+if vim.fn.executable 'rg' == 0 then vim.notify("Ripgrep is not installed!
+Telescope live_grep won't work.", vim.log.levels.WARN) end
+
 require('lazy').setup {
   {
     --require 'lua.plugins.dashboard.dashboard',
@@ -35,9 +38,11 @@ require('lazy').setup {
     require 'plugins.utilities.quitConfirm',
     require 'plugins.utilities.truncateLine',
     require 'plugins.utilities.wordHighlight',
+    require 'plugins.utilities.whichKey',
+    require 'plugins.utilities.mason',
     require 'plugins.editing.autosave',
     require 'plugins.editing.codeContext',
-    require 'plugins.editing.foldText',
+    --require 'plugins.editing.foldText',
     require 'plugins.editing.rainbowCurly',
     require 'plugins.editing.zenMode',
     require 'plugins.editing.dimInactiveCode',
@@ -47,6 +52,11 @@ require('lazy').setup {
     require 'plugins.editing.strictFormatting',
     require 'plugins.editing.hlChunk',
     require 'plugins.editing.autoIndent',
+    require 'plugins.editing.autocompletion',
+    require 'plugins.editing.comment',
+    require 'plugins.editing.indent-blankline',
+    require 'plugins.editing.none-ls',
+    require 'plugins.editing.misc',
     require 'plugins.splitScreen.borderCurrWin',
     require 'plugins.splitScreen.winShift',
     require 'plugins.splitScreen.smartSplit',
@@ -58,7 +68,9 @@ require('lazy').setup {
     require 'plugins.sessionManager.autoSession',
     require 'plugins.git.gitFugitive',
     require 'plugins.git.gitSigns',
-    require 'plugins.utilities.whichKey',
+    require 'plugins.fuzzyFinder.telescope',
+    require 'plugins.fuzzyFinder.nvimTreesitter',
+    require 'plugins.fuzzyFinder.fzf',
   },
 }
 --Make Neovim background transparent
