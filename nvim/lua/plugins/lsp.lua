@@ -126,6 +126,7 @@ return {
     --  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
     --  - settings (table): Override the default settings passed when initializing the server.
     --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
+
     local servers = {
       clangd = {},
       rust_analyzer = {},
@@ -183,7 +184,6 @@ return {
     --  To check the current status of installed tools and/or manually install
     --  other tools, you can run
     --    :Mason
-    --
     --  You can press `g?` for help in this menu.
     require('mason').setup()
 

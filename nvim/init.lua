@@ -13,15 +13,16 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-vim.api.nvim_create_autocmd("VimEnter", {
+vim.api.nvim_create_autocmd('VimEnter', {
   callback = function()
-    vim.cmd("cd E:/CodeBase") -- Fix path format
+    vim.cmd 'cd E:/CodeBase' -- Fix path format
   end,
 })
-require('lazy').setup({
+
+require('lazy').setup {
   --rocks = {
-    --enabled = true,
-    --hererocks = true,
+  --enabled = true,
+  --hererocks = true,
   --},
   {
     require 'plugins.neotree',
@@ -38,8 +39,8 @@ require('lazy').setup({
     require 'plugins.indent-blankline',
     require 'plugins.misc',
     require 'plugins.comment',
-  }
-})
+  },
+}
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

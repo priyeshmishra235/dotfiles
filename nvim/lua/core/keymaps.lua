@@ -8,6 +8,9 @@ vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 -- For conciseness
 local opts = { noremap = true, silent = true }
 
+-- Set Esc
+vim.keymap.set('i', 'kj', '<Esc>', opts)
+
 -- save file
 vim.keymap.set('n', '<C-s>', '<cmd> w <CR>', opts)
 
