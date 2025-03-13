@@ -1,0 +1,166 @@
+return {
+  'shellRaining/hlchunk.nvim',
+  event = { 'BufReadPre', 'BufNewFile' },
+  config = function()
+    require('hlchunk').setup {
+      chunk = {
+        enable = true,
+        priority = 15,
+        style = {
+          { fg = '#00796b' },
+          { fg = '#c21f30' },
+        },
+        use_treesitter = true,
+        chars = {
+          horizontal_line = '─',
+          vertical_line = '│',
+          left_top = '╭',
+          left_bottom = '╰',
+          right_arrow = '>',
+        },
+        textobject = '',
+        max_file_size = 1024 * 1024,
+        error_sign = true,
+        -- animation related
+        duration = 100,
+        delay = 100,
+      },
+
+      -- simple line indentation
+      -- indent = {
+      --     enable=true,
+      --     priority = 10,
+      --     use_treesitter = false,
+      --     chars = {
+      --       '│',
+      --     },
+      --     style = {
+      --       vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID 'Whitespace'), 'fg',
+      --       'gui'),
+      --     },
+      --     ahead_lines = 5,
+      --     delay = 100,
+      -- },
+
+      line_num = {
+        enable = true,
+        style = '#00796b',
+        priority = 10,
+        use_treesitter = true,
+      },
+
+      -- rainbow indentation
+      indent = {
+        enable = true,
+        chars = {
+          '│',
+        },
+        style = {
+          '#6A8A82', -- Muted Teal
+          '#9A9AB3', -- Desaturated Purple
+          '#A1B57D', -- Soft Olive Green
+          '#7EA8BE', -- Faded Blue
+          '#C2C2A3', -- Warm Grayish Yellow
+          '#8D8D99', -- Soft Gray-Blue
+          '#5E8C61', -- Earthy Green
+        },
+      },
+
+      -- Multiple character type indentation
+      -- indent = {
+      --     enable=true,
+      --     chars = {
+      --       "│",
+      --       "¦",
+      --       "┆",
+      --       "┊",
+      --     },
+      --     style = {
+      --       vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID("Whitespace")), "fg",
+      --       "gui"),
+      --     },
+      -- }
+
+      -- Bolder Indentation
+      --indent = {
+      --     enable = true,
+      --     use_treesitter = false,
+      --     chars = {
+      --         " ",
+      --     },
+      --     style = {
+      --         { bg =
+      --         vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID("Whitespace")),
+      --         "fg", "gui") },
+      --     },
+      --     exclude_filetype = exclude_ft,
+      -- }
+
+      exclude_filetypes = {
+        aerial = true,
+        dashboard = true,
+        alpha = true,
+      },
+    }
+
+    -- default spaces filled with ...
+    --blank = {
+    --     enable=true,
+    --     priority = 9,
+    --     chars = {
+    --       '․',
+    --     },
+    --     style = {
+    --       { vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID 'Whitespace'), 'fg',
+    --       'gui'), '' },
+    --     },
+    -- }
+
+    -- rainbow filled
+    --blank = {
+    --   enable = true,
+    --   priority = 9,
+    --   chars = {
+    --     ' ',
+    --   },
+    --   style = {
+    --     { bg = '#434437' },
+    --     { bg = '#2f4440' },
+    --     { bg = '#433054' },
+    --     { bg = '#284251' },
+    --   },
+    -- }
+
+    -- Multiple character types
+    -- indent = {
+    --   enable = true,
+    --   priority = 10,
+    --   chars = {
+    --     '․',
+    --     '⁚',
+    --     '⁖',
+    --     '⁘',
+    --     '⁙',
+    --   },
+    --   style = {
+    --     '#666666',
+    --     '#555555',
+    --     '#444444',
+    --   },
+    -- }
+
+    -- filled
+    --blank = {
+    --     enable = true,
+    --     chars = {
+    --         " ",
+    --     },
+    --     style = {
+    --         { bg =
+    --         vim.fn.synIDattr(vim.fn.synIDtrans(vim.fn.hlID("cursorline")), "bg",
+    --         "gui") },
+    --         { bg = "", fg = "" },
+    --     },
+    -- }
+  end,
+}

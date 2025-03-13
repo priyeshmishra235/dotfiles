@@ -17,6 +17,14 @@ vim.keymap.set('n', '<C-s>', '<cmd> w <CR>', opts)
 -- save file without auto-formatting
 vim.keymap.set('n', '<leader>sn', '<cmd>noautocmd w <CR>', opts)
 
+-- Indent properly when entering insert mode on empty lines
+vim.keymap.set('n', 'i', function()
+  if vim.api.nvim_get_current_line():find '^%s*$' then
+    return [["_cc]]
+  end
+  return 'i'
+end, { expr = true, desc = 'better i' })
+
 -- quit file
 vim.keymap.set('n', '<C-q>', '<cmd> q <CR>', opts)
 
@@ -61,6 +69,32 @@ vim.keymap.set('n', '<leader>tx', ':tabclose<CR>', opts) -- close current tab
 vim.keymap.set('n', '<leader>tn', ':tabn<CR>', opts) --  go to next tab
 vim.keymap.set('n', '<leader>tp', ':tabp<CR>', opts) --  go to previous tab
 
+-- Go to last change
+vim.keymap.set('n', 'g,', 'g;', { desc = 'Go to newest change' })
+vim.keymap.set('n', 'g;', 'g,', { desc = 'Go to last change' })
+
+-- Add blank line without leaving normal mode
+vim.keymap.set('n', '<Space><UP>', "<cmd>call append(line('.') - 1, repeat([''], v:count1))<cr>", { desc = 'Add blank line below' })
+vim.keymap.set('n', '<Space><DOWN>', "<cmd>call append(line('.'), repeat([''], v:count1))<cr>", { desc = 'Add blank line below' })
+
+-- Jump to BoL and EoL without living instert mode
+vim.keymap.set('i', '<M-i>', '<Esc>I', { desc = 'Jump to Beginn of Line in insert mode' })
+vim.keymap.set('i', '<M-a>', '<Esc>A', { desc = 'Jump to End of Line in insert mode' })
+
+-- Inner quotes
+vim.keymap.set({ 'o', 'x' }, 'iq', "i'", { desc = 'Inner Single Quotes' })
+vim.keymap.set({ 'o', 'x' }, 'iQ', 'i"', { desc = 'Inner Double Quotes' })
+
+-- Outer quotes
+vim.keymap.set({ 'o', 'x' }, 'aq', "2i'", { desc = 'Around Single Quotes' })
+vim.keymap.set({ 'o', 'x' }, 'aQ', '2i"', { desc = 'Around Double Quotes' })
+vim.keymap.set({ 'o', 'x' }, "a'", "2i'", { desc = 'Around Single Quotes' })
+vim.keymap.set({ 'o', 'x' }, 'a"', '2i"', { desc = 'Around Double Quotes' })
+
+-- Inner and outer rectangle brackets []
+vim.keymap.set({ 'o', 'x' }, 'ir', 'i[', { desc = 'Inner Brackets' })
+vim.keymap.set({ 'o', 'x' }, 'ar', 'a[', { desc = 'Inner Brackets' })
+
 -- Toggle line wrapping
 vim.keymap.set('n', '<leader>lw', '<cmd>set wrap!<CR>', opts)
 
@@ -70,6 +104,17 @@ vim.keymap.set('v', '>', '>gv', opts)
 
 -- Keep last yanked when pasting
 vim.keymap.set('v', 'p', '"_dP', opts)
+
+-- fix spelling mistakes
+vim.keymap.set('n', 'z.', '1z=', { desc = '󰓆 Fix Spelling' })
+
+-- Don't yank emty lines with dd
+vim.keymap.set('n', 'dd', function()
+  if vim.fn.getline '.' == '' then
+    return '"_dd'
+  end
+  return 'dd'
+end, { expr = true })
 
 -- Diagnostic keymaps
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
