@@ -20,10 +20,28 @@ return {
     { '<C-Right>' },
     { '<C-Down>' },
     { '<C-Up>' },
-    { 'cp', 'vip<Plug>(VM-Visual-Cursors)', desc = 'Create multicursors inner paragraph' },
-    { '<M-s>', ':VMSearch', mode = 'x', desc = 'Search & create multicursors in visual mode' },
-    { '<M-s>', ':%VMSearch', desc = 'Search & create multicursors' },
-    { '<M-c>', '<Plug>(VM-Visual-Cursors)', mode = 'x', desc = 'Create multicursors in visual mode' },
+    {
+      'cp',
+      'vip<Plug>(VM-Visual-Cursors)',
+      desc = 'Create multicursors inner paragraph'
+    },
+    {
+      '<M-s>',
+      ':VMSearch',
+      mode = 'x',
+      desc = 'Search & create multicursors in visual mode'
+    },
+    {
+      '<M-s>',
+      ':%VMSearch',
+      desc = 'Search & create multicursors'
+    },
+    {
+      '<M-c>',
+      '<Plug>(VM-Visual-Cursors)',
+      mode = 'x',
+      desc = 'Create multicursors in visual mode'
+    },
   },
   -- Basic usage:
   --

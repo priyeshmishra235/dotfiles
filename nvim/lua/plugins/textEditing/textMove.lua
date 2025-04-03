@@ -1,8 +1,8 @@
 return {
   'booperlv/nvim-gomove',
+  event = 'VeryLazy',
   config = function()
     require('gomove').setup {
-      -- whether or not to map default key bindings, (true/false)
       map_defaults = false,
       -- whether or not to reindent lines moved vertically (true/false)
       reindent = true,
@@ -16,7 +16,8 @@ return {
     -- Move text mappings
     local map = vim.api.nvim_set_keymap
     local opts = { noremap = true, silent = true }
-
+    -- <S-...> → Shift + Key
+    -- <A-...> → Alt + Key
     map('n', '<S-h>', '<Plug>GoNSMLeft', opts)
     map('n', '<S-j>', '<Plug>GoNSMDown', opts)
     map('n', '<S-k>', '<Plug>GoNSMUp', opts)

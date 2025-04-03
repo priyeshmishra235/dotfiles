@@ -1,6 +1,8 @@
 return {
   --Toggle Zen Mode with :ZenMode
   'folke/zen-mode.nvim',
+  cmd = 'ZenMode',
+  event = 'VeryLazy',
   opts = {
     {
       window = {
@@ -90,6 +92,6 @@ return {
     },
   },
   config = function()
-    vim.api.nvim_set_keymap('n', '<leader>zz', ':ZenMode<CR>', { noremap = true, silent = true }) -- Toggle Zen Mode
+    vim.api.nvim_set_keymap('n', '<leader>zz', ':ZenMode<CR>', { noremap = true, silent = true })
   end,
 }

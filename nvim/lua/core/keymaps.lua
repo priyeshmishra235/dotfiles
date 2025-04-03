@@ -40,22 +40,25 @@ vim.keymap.set('n', 'n', 'nzzzv', opts)
 vim.keymap.set('n', 'N', 'Nzzzv', opts)
 
 -- Resize with arrows
-vim.keymap.set('n', '<Up>', ':resize -2<CR>', opts)
-vim.keymap.set('n', '<Down>', ':resize +2<CR>', opts)
-vim.keymap.set('n', '<Left>', ':vertical resize -2<CR>', opts)
-vim.keymap.set('n', '<Right>', ':vertical resize +2<CR>', opts)
+vim.keymap.set('n', '<Up>', ':resize -1<CR>', opts)
+vim.keymap.set('n', '<Down>', ':resize +1<CR>', opts)
+vim.keymap.set('n', '<Left>', ':vertical resize -1<CR>', opts)
+vim.keymap.set('n', '<Right>', ':vertical resize +1<CR>', opts)
 
 -- Buffers
 vim.keymap.set('n', '<Tab>', ':bnext<CR>', opts)
+-- Already set as shift+i to go next buffer
 vim.keymap.set('n', '<S-Tab>', ':bprevious<CR>', opts)
-vim.keymap.set('n', '<leader>x', ':bdelete!<CR>', opts) -- close buffer
+-- Already set as shift+o to go to previous buffer
+vim.keymap.set('n', '<leader>x', ':bdelete!<CR>', opts)   -- close buffer
+-- Already set as <leader>bd to close current buffer
 vim.keymap.set('n', '<leader>b', '<cmd> enew <CR>', opts) -- new buffer
 
 -- Window management
-vim.keymap.set('n', '<leader>v', '<C-w>v', opts) -- split window vertically
-vim.keymap.set('n', '<leader>h', '<C-w>s', opts) -- split window horizontally
-vim.keymap.set('n', '<leader>se', '<C-w>=', opts) -- make split windows equal width & height
-vim.keymap.set('n', '<leader>xs', ':close<CR>', opts) -- close current split window
+vim.keymap.set('n', '<leader>v', '<C-w>v', opts)      -- split window vertically
+vim.keymap.set('n', '<leader>h', '<C-w>s', opts)      -- split window horizontally
+vim.keymap.set('n', '<leader>se', '<C-w>=', opts)     -- make split windows equal width & height
+vim.keymap.set('n', '<leader>xx', ':close<CR>', opts) -- close current split window
 
 -- Navigate between splits
 vim.keymap.set('n', '<C-k>', ':wincmd k<CR>', opts)
@@ -64,18 +67,20 @@ vim.keymap.set('n', '<C-h>', ':wincmd h<CR>', opts)
 vim.keymap.set('n', '<C-l>', ':wincmd l<CR>', opts)
 
 -- Tabs
-vim.keymap.set('n', '<leader>to', ':tabnew<CR>', opts) -- open new tab
+vim.keymap.set('n', '<leader>to', ':tabnew<CR>', opts)   -- open new tab
 vim.keymap.set('n', '<leader>tx', ':tabclose<CR>', opts) -- close current tab
-vim.keymap.set('n', '<leader>tn', ':tabn<CR>', opts) --  go to next tab
-vim.keymap.set('n', '<leader>tp', ':tabp<CR>', opts) --  go to previous tab
+vim.keymap.set('n', '<leader>tn', ':tabn<CR>', opts)     --  go to next tab
+vim.keymap.set('n', '<leader>tp', ':tabp<CR>', opts)     --  go to previous tab
 
 -- Go to last change
 vim.keymap.set('n', 'g,', 'g;', { desc = 'Go to newest change' })
 vim.keymap.set('n', 'g;', 'g,', { desc = 'Go to last change' })
 
 -- Add blank line without leaving normal mode
-vim.keymap.set('n', '<Space><UP>', "<cmd>call append(line('.') - 1, repeat([''], v:count1))<cr>", { desc = 'Add blank line below' })
-vim.keymap.set('n', '<Space><DOWN>', "<cmd>call append(line('.'), repeat([''], v:count1))<cr>", { desc = 'Add blank line below' })
+vim.keymap.set('n', '<Space><UP>', "<cmd>call append(line('.') - 1, repeat([''], v:count1))<cr>",
+  { desc = 'Add blank line below' })
+vim.keymap.set('n', '<Space><DOWN>', "<cmd>call append(line('.'), repeat([''], v:count1))<cr>",
+  { desc = 'Add blank line below' })
 
 -- Jump to BoL and EoL without living instert mode
 vim.keymap.set('i', '<M-i>', '<Esc>I', { desc = 'Jump to Beginn of Line in insert mode' })

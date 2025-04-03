@@ -1,11 +1,11 @@
 return {
   {
     'neovim/nvim-lspconfig',
-    event = { 'BufWritePre', 'BufNewFile', 'BufNewFile' },
+    event = { 'BufWritePre', 'BufNewFile' },
     dependencies = {
       'hrsh7th/cmp-nvim-lsp',
       { 'antosha417/nvim-lsp-file-operations', config = true },
-      { 'folke/neodev.nvim', opts = {} },
+      { 'folke/neodev.nvim',                   opts = {} },
       { 'saghen/blink.cmp' },
     },
     config = function()
@@ -13,26 +13,20 @@ return {
       -- │ LSPCONFIG │
       -- ╰───────────╯
       local lspconfig = require 'lspconfig'
-
       -- ╭──────────────────╮
       -- │ LSP CAPABILITIES │
       -- ╰──────────────────╯
       local lsp_defaults = lspconfig.util.default_config
-      lsp_defaults.capabilities = vim.tbl_deep_extend('force', lsp_defaults.capabilities, require('cmp_nvim_lsp').default_capabilities())
-      lsp_defaults.capabilities = vim.tbl_deep_extend('force', lsp_defaults.capabilities, require('blink.cmp').get_lsp_capabilities())
-
-      -- ╭───────────────────╮
-      -- │ WINBAR WITH NAVIC │
-      -- ╰───────────────────╯
-      -- local navic = require 'nvim-navic'
-
+      lsp_defaults.capabilities = vim.tbl_deep_extend('force', lsp_defaults.capabilities,
+        require('cmp_nvim_lsp').default_capabilities())
+      lsp_defaults.capabilities = vim.tbl_deep_extend('force', lsp_defaults.capabilities,
+        require('blink.cmp').get_lsp_capabilities())
       -- ╭─────────────────────────────────────────────────────────╮
       -- │                   DIAGNOSTIC KAYMAPS                    │
       -- ╰─────────────────────────────────────────────────────────╯
       local opts = function(desc)
         return { noremap = true, silent = true, desc = desc }
       end
-
       vim.keymap.set('n', '<space>d', vim.diagnostic.open_float, opts 'Open Diagnostic Window')
       vim.keymap.set('n', '<space><left>', function()
         vim.diagnostic.jump { count = -vim.v.count1 }
@@ -45,7 +39,6 @@ return {
         local new_config = not vim.diagnostic.config().virtual_lines
         vim.diagnostic.config { virtual_lines = new_config }
       end, { desc = 'Toggle diagnostic virtual_lines' })
-
       -- ╭───────────────────────╮
       -- │ LSPATTACH AUTOCOMMAND │
       -- ╰───────────────────────╯
@@ -97,14 +90,6 @@ return {
           else
             vim.lsp.inlay_hint.enable(false)
           end
-
-          -- ╭────────────╮
-          -- │ NVIM-NAVIC │
-          -- ╰────────────╯
-          -- if client and client.server_capabilities.documentSymbolProvider then
-          --   vim.o.winbar = "%{%v:lua.require'nvim-navic'.get_location()%}"
-          --   navic.attach(client, ev.buf)
-          -- end
 
           -- ╭──────────╮
           -- │ TINYMIST │
@@ -175,10 +160,35 @@ return {
       -- ╭────────────╮
       -- │    C++     │
       -- ╰────────────╯
+      -- This works
       lspconfig.clangd.setup {
-
+        require('lspconfig').clangd.setup {
+          on_new_config = function(new_config, new_cwd)
+            local status, cmake = pcall(require, "cmake-tools")
+            if status then
+              cmake.clangd_on_new_config(new_config)
+            end
+          end,
+        },
+        cmd = {
+          "clangd",
+          "--background-index",
+          "--clang-tidy",
+          "--clang-tidy-checks=*",
+          "--completion-style=detailed",
+          "--header-insertion=iwyu",
+          "--all-scopes-completion",
+          "--pch-storage=memory",
+          "--fallback-style=Google",
+          "--function-arg-placeholders",
+          "--header-insertion-decorators",
+          "--log=info",
+          "--pretty",
+          "--ranking-model=decision_forest",
+          "--limit-results=500",
+        },
         capabilities = {
-          offsetEncoding = { 'utf-8', 'utf-16' },
+          offsetEncoding = { 'utf-8' },
           textDocument = {
             completion = {
               editsNearCursor = true,
@@ -203,21 +213,13 @@ return {
 
           client.config.settings.Lua = vim.tbl_deep_extend('force', client.config.settings.Lua, {
             runtime = {
-              -- Tell the language server which version of Lua you're using
-              -- (most likely LuaJIT in the case of Neovim)
               version = 'LuaJIT',
             },
-            -- Make the server aware of Neovim runtime files
             workspace = {
               checkThirdParty = false,
               library = {
                 vim.env.VIMRUNTIME,
-                -- Depending on the usage, you might want to add additional paths here.
-                -- "${3rd}/luv/library"
-                -- "${3rd}/busted/library",
               },
-              -- or pull in all of 'runtimepath'. NOTE: this is a lot slower
-              -- library = vim.api.nvim_get_runtime_file("", true)
             },
           })
           client.notify('workspace/didChangeConfiguration', { settings = client.config.settings })
@@ -226,12 +228,19 @@ return {
           Lua = {},
         },
       }
-
+      lspconfig.ast_grep.setup {}
+      lspconfig.glsl_analyzer.setup {}
+      lspconfig.marksman.setup {}
+      lspconfig.markdown_oxide.setup {}
+      lspconfig.pyright.setup {}
+      lspconfig.sqlls.setup {}
+      lspconfig.vimls.setup {}
+      lspconfig.wgsl_analyzer.setup {}
+      lspconfig.yamlls.setup {}
       -- ╭───────────────╮
       -- │ PYTHON SERVER │
       -- ╰───────────────╯
       lspconfig.ruff.setup {}
-
       -- ╭─────────────╮
       -- │ JSON SERVER │
       -- ╰─────────────╯
@@ -241,45 +250,10 @@ return {
           provideFormatter = true,
         },
       }
-
       -- ╭─────────────╮
       -- │ RUST SERVER │
       -- ╰─────────────╯
       lspconfig.rust_analyzer.setup {}
     end,
   },
-  -- {
-  --   'jose-elias-alvarez/null-ls.nvim',
-  --   dependencies = { 'nvim-lua/plenary.nvim' },
-  --   config = function()
-  --     local null_ls = require 'null-ls'
-  --     null_ls.setup {
-  --       sources = {
-  --         null_ls.builtins.formatting.clang_format,
-  --         null_ls.builtins.formatting.rustfmt,
-  --         null_ls.builtins.formatting.stylua,
-  --         null_ls.builtins.formatting.black,
-  --         null_ls.builtins.formatting.prettier,
-  --         null_ls.builtins.formatting.shfmt,
-  --         null_ls.builtins.formatting.sqlfluff,
-  --
-  --         null_ls.builtins.diagnostics.cpplint,
-  --         null_ls.builtins.diagnostics.flake8,
-  --         null_ls.builtins.diagnostics.eslint_d,
-  --         null_ls.builtins.diagnostics.phpstan,
-  --         null_ls.builtins.diagnostics.golangci_lint,
-  --         null_ls.builtins.diagnostics.jsonlint,
-  --         null_ls.builtins.diagnostics.sqlfluff,
-  --         null_ls.builtins.diagnostics.shellcheck,
-  --         null_ls.builtins.diagnostics.markdownlint,
-  --       },
-  --     }
-  --
-  --     vim.api.nvim_create_autocmd('BufWritePre', {
-  --       callback = function()
-  --         vim.lsp.buf.format { async = false }
-  --       end,
-  --     })
-  --   end,
-  -- },
 }

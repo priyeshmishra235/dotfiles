@@ -1,5 +1,6 @@
 return {
   'folke/trouble.nvim',
+  event = 'VeryLazy',
   keys = {
     { '<space>xx', '<cmd>Trouble diagnostics toggle<cr>', desc = 'Diagnostics (Trouble)' },
     { '<space>xX', '<cmd>Trouble diagnostics toggle filter.buf=0<cr>', desc = 'Buffer Diagnostics (Trouble)' },

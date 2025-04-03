@@ -1,7 +1,5 @@
 return {
   'stevearc/oil.nvim',
-  ---@module 'oil'
-  ---@type oil.SetupOpts
   opts = {
     commands = {
       image_wezterm = function(state)
@@ -12,9 +10,7 @@ return {
       end,
     },
   },
-  -- Optional dependencies
-  --dependencies = { { "echasnovski/mini.icons", opts = {} } },
-  dependencies = { 'nvim-tree/nvim-web-devicons' }, -- use if you prefer nvim-web-devicons
+  dependencies = { 'nvim-tree/nvim-web-devicons' },
   lazy = false,
   config = function()
     require('oil').setup {
@@ -25,18 +21,16 @@ return {
       -- See :help oil-columns
       columns = {
         'icon',
-        -- "permissions",
-        -- "size",
-        -- "mtime",
+        -- 'permissions',
+        -- 'size',
+        -- 'mtime',
       },
-      -- Buffer-local options to use for oil buffers
       buf_options = {
         buflisted = false,
         bufhidden = 'hide',
       },
-      -- Window-local options to use for oil buffers
       win_options = {
-        wrap = false,
+        wrap = true,
         signcolumn = 'no',
         cursorcolumn = false,
         foldcolumn = '0',
@@ -45,24 +39,16 @@ return {
         conceallevel = 3,
         concealcursor = 'nvic',
       },
-      -- Send deleted files to the trash instead of permanently deleting them (:help oil-trash)
       delete_to_trash = true,
-      -- Skip the confirmation popup for simple operations (:help oil.skip_confirm_for_simple_edits)
       skip_confirm_for_simple_edits = false,
-      -- Selecting a new/moved/renamed file or directory will prompt you to save changes first
-      -- (:help prompt_save_on_select_new_entry)
       prompt_save_on_select_new_entry = true,
       -- Oil will automatically delete hidden buffers after this delay
       -- You can set the delay to false to disable cleanup entirely
       -- Note that the cleanup process only starts when none of the oil buffers are currently displayed
       cleanup_delay_ms = 2000,
       lsp_file_methods = {
-        -- Enable or disable LSP file operations
         enabled = true,
-        -- Time to wait for LSP file operations to complete before skipping
         timeout_ms = 1000,
-        -- Set to true to autosave buffers that are updated with LSP willRenameFiles
-        -- Set to "unmodified" to only save unmodified buffers
         autosave_changes = false,
       },
       -- Constrain the cursor to the editable parts of the oil buffer
@@ -70,11 +56,6 @@ return {
       constrain_cursor = 'editable',
       -- Set to true to watch the filesystem for changes and reload oil
       watch_for_changes = true,
-      -- Keymaps in oil buffer. Can be any value that `vim.keymap.set` accepts OR a table of keymap
-      -- options with a `callback` (e.g. { callback = function() ... end, desc = "", mode = "n" })
-      -- Additionally, if it is a string that matches "actions.<name>",
-      -- it will use the mapping at require("oil.actions").<name>
-      -- Set to `false` to remove a keymap
       -- See :help oil-actions for a list of all available actions
       vim.keymap.set('n', '<leader>e', require('oil').open, { desc = 'Open Oil in new buffer' }),
       vim.keymap.set('n', '<leader>f', function()
@@ -129,28 +110,13 @@ return {
           return nil
         end,
       },
-      -- -- Extra arguments to pass to SCP when moving/copying files over SSH
-      -- extra_scp_args = {},
-      -- -- EXPERIMENTAL support for performing file operations with git
-      -- git = {
-      --   -- Return true to automatically git add/mv/rm files
-      --   add = function(path)
-      --     return false
-      --   end,
-      --   mv = function(src_path, dest_path)
-      --     return false
-      --   end,
-      --   rm = function(path)
-      --     return false
-      --   end,
-      -- },
       -- Configuration for the floating window in oil.open_float
       float = {
         -- Padding around the floating window
         padding = 0,
         -- max_width and max_height can be integers or a float between 0 and 1 (e.g. 0.4 for 40%)
-        max_width = 0.4,
-        max_height = 0.7,
+        max_width = 0.3,
+        max_height = 0.6,
         border = 'rounded',
         win_options = {
           winblend = 0,

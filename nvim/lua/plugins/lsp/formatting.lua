@@ -7,13 +7,14 @@ return {
       formatters_by_ft = {
         markdown = { 'prettier' },
         lua = { 'stylua' },
-        python = function(bufnr)
-          if require('conform').get_formatter_info('ruff_format', bufnr).available then
-            return { 'ruff_format' }
-          else
-            return { 'isort', 'black' }
-          end
-        end,
+        python = { 'black', 'isort' },
+        -- python = function(bufnr)
+        --   if require('conform').get_formatter_info('ruff', bufnr).available then
+        --     return { 'ruff_format' }
+        --   else
+        --     return { 'isort', 'black' }
+        --   end
+        -- end,
         javascript = { 'prettierd', 'prettier', stop_after_first = true },
         go = { 'goimports', 'gofmt' },
         c = { 'clang-format' },

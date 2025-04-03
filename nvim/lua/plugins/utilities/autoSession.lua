@@ -1,6 +1,6 @@
 return {
   'rmagatti/auto-session',
-  lazy = false,
+  lazy = true,
 
   opts = {
     enabled = true, -- Enables/disables auto creating, saving and restoring
@@ -53,10 +53,10 @@ return {
       -- For all options, see: https://github.com/nvim-telescope/telescope.nvim/blob/master/doc/telescope.txt#L112
       theme_conf = {
         border = true,
-        -- layout_config = {
-        --   width = 0.8, -- Can set width and height as percent of window
-        --   height = 0.5,
-        -- },
+        layout_config = {
+          width = 0.5,
+          height = 0.3,
+        },
       },
     },
 
@@ -66,23 +66,25 @@ return {
       control_filename = 'session_control.json', -- Session control file name
     },
   },
+
+  config = function()
+    -- ╭─────────╮
+    -- │ keymaps │
+    -- ╰─────────╯
+    local map = vim.api.nvim_set_keymap
+    local opts = { noremap = true, silent = true }
+
+    map('n', '<leader>ss', ':SessionSave my_session<CR>', opts)
+    map('n', '<leader>sr', ':SessionRestore<CR>', opts)
+    map('n', '<leader>sR', ':SessionRestore my_session<CR>', opts)
+    map('n', '<leader>sd', ':SessionDelete<CR>', opts)
+    map('n', '<leader>sD', ':SessionDelete my_session<CR>', opts)
+    map('n', '<leader>sa', ':SessionDisableAutoSave<CR>', opts)
+    map('n', '<leader>sA', ':SessionDisableAutoSave!<CR>', opts)
+    map('n', '<leader>st', ':SessionToggleAutoSave<CR>', opts)
+    map('n', '<leader>sp', ':SessionPurgeOrphaned<CR>', opts)
+    map('n', '<leader>ssr', ':SessionSearch<CR>', opts)
+    map('n', '<leader>ass', ':Autosession search<CR>', opts)
+    map('n', '<leader>asd', ':Autosession delete<CR>', opts)
+  end,
 }
-
--- :SessionSave my_session - saves a session called `my_session` in `root_dir`
-
--- :SessionRestore - restores a session based on the `cwd` from `root_dir`
--- :SessionRestore my_session - restores `my_session` from `root_dir`
-
--- :SessionDelete - deletes a session based on the `cwd` from `root_dir`
--- :SessionDelete my_session - deletes `my_session` from `root_dir`
-
--- :SessionDisableAutoSave - disables autosave
--- :SessionDisableAutoSave! - enables autosave (still does all checks in the config)
--- :SessionToggleAutoSave - toggles autosave
-
--- :SessionPurgeOrphaned - removes all orphaned sessions with no working directory left.
-
--- :SessionSearch - open a session picker, uses Telescope or Snacks if installed, vim.ui.select otherwise
-
--- :Autosession search - open a vim.ui.select picker to choose a session to load.
--- :Autosession delete - open a vim.ui.select picker to choose a session to delete.

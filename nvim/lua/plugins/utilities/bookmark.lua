@@ -1,5 +1,6 @@
 return {
   'crusj/bookmarks.nvim',
+  event = 'VeryLazy',
   keys = {
     { '<tab><tab>', mode = { 'n' } },
   },
@@ -23,8 +24,8 @@ return {
         focus_bookmarks = '<c-k>', -- focus bookmarks window
         toogle_focus = '<S-Tab>', -- toggle window focus (tags-window <-> bookmarks-window)
       },
-      width = 0.8, -- Bookmarks window width:  (0, 1]
-      height = 0.7, -- Bookmarks window height: (0, 1]
+      width = 0.3, -- Bookmarks window width:  (0, 1]
+      height = 0.6, -- Bookmarks window height: (0, 1]
       preview_ratio = 0.45, -- Bookmarks preview window ratio (0, 1]
       tags_ratio = 0.1, -- Bookmarks tags window ratio
       fix_enable = true, -- If true, when saving the current file, if the bookmark line number of the current file changes, try to fix it.

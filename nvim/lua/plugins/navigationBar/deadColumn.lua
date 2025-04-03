@@ -1,11 +1,10 @@
 return {
   'Bekaboo/deadcolumn.nvim',
-  event = 'BufReadPost', -- Load when a file is opened
+  event = 'BufReadPost',
   config = function()
-    vim.opt.colorcolumn = '80' -- Highlights the 80th column
+    vim.opt.colorcolumn = '80'
     require('deadcolumn').setup {
-      scope = 'line', ---@type string|fun(): integer
-      ---@type string[]|boolean|fun(mode: string): boolean
+      scope = 'line',
       modes = function(mode)
         return mode:find '^[iRss\x13]' ~= nil
       end,
@@ -21,7 +20,6 @@ return {
         hlgroup = { 'Error', 'bg' },
       },
       extra = {
-        ---@type string|integer
         follow_tw = nil,
       },
     }

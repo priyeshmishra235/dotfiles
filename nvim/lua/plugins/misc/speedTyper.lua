@@ -1,0 +1,6 @@
+return {
+  'NStefan002/speedtyper.nvim',
+  branch = '2',
+  lazy = true,
+  -- :Speedtyper
+}

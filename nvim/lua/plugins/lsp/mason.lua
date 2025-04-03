@@ -5,6 +5,7 @@ return {
       'williamboman/mason-lspconfig.nvim',
       'WhoIsSethDaniel/mason-tool-installer.nvim',
     },
+    event = 'VeryLazy',
     config = function()
       local mason = require 'mason'
       local mason_lspconfig = require 'mason-lspconfig'
@@ -12,15 +13,16 @@ return {
       mason.setup {
         ui = {
           icons = {
-            package_installed = '✓', -- Icon for installed packages
-            package_pending = '➜', -- Icon for pending installations
-            package_uninstalled = '✗', -- Icon for uninstalled packages
+            package_installed = '✓',
+            package_pending = '➜',
+            package_uninstalled = '✗',
           },
         },
       }
       mason_lspconfig.setup {
         ensure_installed = {
           'clangd',
+          'ruff',
           'lua_ls',
           'pyright',
           'glsl_analyzer',

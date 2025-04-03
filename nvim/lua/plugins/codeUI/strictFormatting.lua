@@ -1,5 +1,6 @@
 return {
   'emileferreira/nvim-strict',
+  event = 'VeryLazy',
   config = function()
     local strict = require 'strict'
 
@@ -9,7 +10,7 @@ return {
       excluded_buftypes = { 'help', 'nofile', 'terminal', 'prompt' },
       match_priority = -1,
       deep_nesting = {
-        highlight = true,
+        highlight = false,
         highlight_group = 'DiffDelete',
         depth_limit = 5,
         ignored_trailing_characters = ',',

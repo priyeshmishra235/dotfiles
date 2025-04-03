@@ -36,8 +36,8 @@ require('lazy').setup {
   -- ╭─────────────────────────╮
   -- │ competitive Programming │
   -- ╰─────────────────────────╯
-  require 'plugins.competitiveProgramming.competiTest',
-  --require 'plugins.competitiveProgramming.leetcode',
+  -- require 'plugins.competitiveProgramming.competiTest',
+  -- require 'plugins.competitiveProgramming.leetcode',
   -- ╭─────────────────────────────╮
   -- │ fileManager and can't think │
   -- ╰─────────────────────────────╯
@@ -64,22 +64,34 @@ require('lazy').setup {
   -- ╭─────────────────────╮
   -- │ LSP-related plugins │
   -- ╰─────────────────────╯
-  require 'plugins.lsp.codeContext',
-  require 'plugins.lsp.formatting',
-  require 'plugins.lsp.linting',
+  require 'plugins.lsp.none-ls',
   require 'plugins.lsp.lspConfig',
+  require 'plugins.lsp.nvim-cmp',
   require 'plugins.lsp.luasnip',
   require 'plugins.lsp.mason',
-  require 'plugins.lsp.nvim-cmp',
   require 'plugins.lsp.trouble',
+  require 'plugins.lsp.cmake-tools',
+  require 'plugins.lsp.clangd-extensions',
+  require 'plugins.lsp.refactoring',
+  -- require 'plugins.lsp.codeContext',
+  -- ╭─────╮
+  -- │ DAP │
+  -- ╰─────╯
+  require 'plugins.debugger.nvim-dap',
+  require 'plugins.debugger.debugPrint',
+  require 'plugins.debugger.nvim-dap-virtual-text',
+  require 'plugins.debugger.nvim-dapui',
+  require 'plugins.debugger.nvim-dap-utils',
+  -- require 'plugins.debugger.persistent-breakpoint',
   -- ╭───────────────────────╮
   -- │ Miscellaneous plugins │
   -- ╰───────────────────────╯
   require 'plugins.misc.autosave',
   require 'plugins.misc.pendulum',
-  require 'plugins.misc.imageViewer',
+  require 'plugins.misc.cheatsheet',
+  -- require 'plugins.misc.imageViewer',
   require 'plugins.misc.misc',
-  require 'plugins.misc.quitConfirm',
+  -- require 'plugins.misc.speedTyper',
   -- ╭────────────────────────╮
   -- │ Navigation Bar plugins │
   -- ╰────────────────────────╯
@@ -104,7 +116,7 @@ require('lazy').setup {
   -- ╭─────────────────────────╮
   -- │ Split Screen Management │
   -- ╰─────────────────────────╯
-  require 'plugins.splitScreen.borderCurrWin',
+  -- require 'plugins.splitScreen.borderCurrWin',
   require 'plugins.splitScreen.smartSplit',
   require 'plugins.splitScreen.winShift',
   -- ╭──────────────────────╮

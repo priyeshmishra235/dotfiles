@@ -1,5 +1,6 @@
 return {
   'akinsho/toggleterm.nvim',
+  event = 'VeryLazy',
   version = '*',
   opts = {
     size = function(term)
@@ -19,7 +20,7 @@ return {
     persist_size = true,
     persist_mode = true,
     direction = 'vertical', -- Change to 'vertical', 'float', or 'tab' if needed
-    close_on_exit = true,
+    close_on_exit = false,
     shell = vim.o.shell,
     auto_scroll = true,
     float_opts = {

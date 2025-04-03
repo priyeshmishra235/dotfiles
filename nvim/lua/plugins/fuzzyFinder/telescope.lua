@@ -2,27 +2,133 @@ return {
   'nvim-telescope/telescope.nvim',
   cmd = { 'Telescope' },
   keys = {
-    { '<leader>fb', '<cmd>Telescope buffers<cr>', desc = 'Find Buffers' },
-    { '<leader>fc', ":lua require'telescope.builtin'.commands{}<cr>", desc = 'List Commands' },
-    { '<leader>fd', '<cmd>Telescope diagnostics<cr>', desc = 'Find Diagnostics' },
-    { '<leader>fe', '<cmd>Telescope file_browser<cr>', desc = 'File Browser' },
-    { '<leader>ff', '<cmd>Telescope find_files<cr>', desc = 'Find Files' },
-    { '<leader>fg', '<cmd>Telescope live_grep<cr>', desc = 'Find Word' },
-    { '<leader>fh', '<cmd>Telescope help_tags<cr>', desc = 'Find Help' },
-    { '<leader>fi', '<cmd>Telescope import<cr>', desc = 'Find Imports' },
-    { '<leader>fj', '<cmd>Telescope emoji<cr>', desc = 'Find emoji' },
-    { '<leader>fk', '<cmd>Telescope keymaps<cr>', desc = 'Find Keymaps' },
-    { '<leader>fl', '<cmd>Telescope highlights<cr>', desc = 'Find Highlights' },
-    { '<leader>fm', '<cmd>Telescope heading<cr>', desc = 'Find Heading' },
-    { '<leader>fo', '<cmd>Telescope oldfiles<cr>', desc = 'Recently opened files' },
-    { '<leader>fp', '<cmd>Telescope spell_suggest<cr>', desc = 'Find Spell Suggest' },
-    { '<leader>fq', '<cmd>Telescope quickfix<cr>', desc = 'Find Quickix' },
-    { '<leader>fr', '<cmd>Telescope grep_string<cr>', desc = 'Find Word Under Cursor' },
-    { '<leader>fs', '<cmd>Telescope symbols<cr>', desc = 'Find Symbols' },
-    { '<leader>ft', '<cmd>Telescope git_files<cr>', desc = 'Find Git Files' },
-    { '<leader>fu', '<cmd>Telescope undo<cr>', desc = 'Find Undo' },
-    { '<leader>fy', '<cmd>Telescope yank_history<cr>', mode = { 'n', 'x' }, desc = 'Find yanks' },
-    { '<leader>fz', '<cmd>Telescope zoxide list<cr>', desc = 'Find Directory' },
+    {
+      '<leader>fb',
+      '<cmd>Telescope buffers<cr>',
+      desc =
+      'Find Buffers'
+    },
+    {
+      '<leader>fc',
+      ":lua require'telescope.builtin'.commands{}<cr>",
+      desc =
+      'List Commands'
+    },
+    {
+      '<leader>fd',
+      '<cmd>Telescope diagnostics<cr>',
+      desc =
+      'Find Diagnostics'
+    },
+    {
+      '<leader>fe',
+      '<cmd>Telescope file_browser<cr>',
+      desc =
+      'File Browser'
+    },
+    {
+      '<leader>ff',
+      '<cmd>Telescope find_files<cr>',
+      desc =
+      'Find Files'
+    },
+    {
+      '<leader>fg',
+      '<cmd>Telescope live_grep<cr>',
+      desc =
+      'Find Word'
+    },
+    {
+      '<leader>fh',
+      '<cmd>Telescope help_tags<cr>',
+      desc =
+      'Find Help'
+    },
+    {
+      '<leader>fi',
+      '<cmd>Telescope import<cr>',
+      desc =
+      'Find Imports'
+    },
+    {
+      '<leader>fj',
+      '<cmd>Telescope emoji<cr>',
+      desc =
+      'Find emoji'
+    },
+    {
+      '<leader>fk',
+      '<cmd>Telescope keymaps<cr>',
+      desc =
+      'Find Keymaps'
+    },
+    {
+      '<leader>fl',
+      '<cmd>Telescope highlights<cr>',
+      desc =
+      'Find Highlights'
+    },
+    {
+      '<leader>fm',
+      '<cmd>Telescope heading<cr>',
+      desc =
+      'Find Heading'
+    },
+    {
+      '<leader>fo',
+      '<cmd>Telescope oldfiles<cr>',
+      desc =
+      'Recently opened files'
+    },
+    {
+      '<leader>fp',
+      '<cmd>Telescope spell_suggest<cr>',
+      desc =
+      'Find Spell Suggest'
+    },
+    {
+      '<leader>fq',
+      '<cmd>Telescope quickfix<cr>',
+      desc =
+      'Find Quickix'
+    },
+    {
+      '<leader>fr',
+      '<cmd>Telescope grep_string<cr>',
+      desc =
+      'Find Word Under Cursor'
+    },
+    {
+      '<leader>fs',
+      '<cmd>Telescope symbols<cr>',
+      desc =
+      'Find Symbols'
+    },
+    {
+      '<leader>ft',
+      '<cmd>Telescope git_files<cr>',
+      desc =
+      'Find Git Files'
+    },
+    {
+      '<leader>fu',
+      '<cmd>Telescope undo<cr>',
+      desc =
+      'Find Undo'
+    },
+    {
+      '<leader>fy',
+      '<cmd>Telescope yank_history<cr>',
+      mode = {
+        'n', 'x' },
+      desc = 'Find yanks'
+    },
+    {
+      '<leader>fz',
+      '<cmd>Telescope zoxide list<cr>',
+      desc =
+      'Find Directory'
+    },
   },
   dependencies = {
     'nvim-lua/plenary.nvim',
@@ -48,7 +154,7 @@ return {
         selection_caret = '▎ ',
         multi_icon = ' │ ',
         winblend = 0,
-        borderchars = { '─', '│', '─', '│', '┌', '┐', '┘', '└' },
+        borderchars = { '─', '│', '─', '│', '╭', '╮', '╯', '╰' },
         mappings = {
           i = {
             ['<c-t>'] = open_with_trouble,
@@ -87,30 +193,65 @@ return {
           -- theme = 'ivy', -- 'ivy', 'dropdown', 'cursor'
           -- layout_strategy = 'vertical',
           -- layout_config = { height = 0.9 },
-          -- previewer = true,
+          previewer = true,
+          path_display = { 'smart' },
+          layout_config = {
+            prompt_position = 'top',
+            preview_width = 0.5,
+            -- width = 0.8,
+          },
+          sorting_strategy = 'ascending',
+          find_files = { hidden = true, },
+        },
+        help_tags = {
+          -- theme = 'ivy',
+          previewer = true,
           path_display = { 'smart' },
           layout_config = {
             prompt_position = 'top',
             preview_width = 0.5,
             -- width = 0.7,
           },
-          sorting_strategy = 'ascending',
-        },
-        help_tags = {
-          theme = 'ivy',
         },
         symbols = {
           theme = 'dropdown',
+          previewer = true,
+          path_display = { 'smart' },
+          layout_config = {
+            prompt_position = 'top',
+            preview_width = 0.5,
+            -- width = 0.7,
+          },
         },
         registers = {
-          theme = 'ivy',
+          -- theme = 'ivy',
+          path_display = { 'smart' },
+          layout_config = {
+            prompt_position = 'top',
+            preview_width = 0.5,
+            -- width = 0.7,
+          },
         },
         grep_string = {
           initial_mode = 'normal',
-          theme = 'ivy',
+          -- theme = 'ivy',
+          previewer = true,
+          path_display = { 'smart' },
+          layout_config = {
+            prompt_position = 'top',
+            preview_width = 0.5,
+            -- width = 0.7,
+          },
         },
         live_grep = {
-          theme = 'ivy',
+          -- theme = 'ivy',
+          previewer = true,
+          path_display = { 'smart' },
+          layout_config = {
+            prompt_position = 'top',
+            preview_width = 0.5,
+            -- width = 0.7,
+          },
         },
       },
       extensions = {
@@ -120,7 +261,7 @@ return {
           grouped = true,
           theme = 'dropdown',
           initial_mode = 'normal',
-          previewer = false,
+          previewer = true,
           mappings = {
             n = {
               ['o'] = 'select_default',

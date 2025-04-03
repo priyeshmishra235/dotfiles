@@ -1,5 +1,6 @@
 return {
   'ibhagwan/fzf-lua',
+  event = 'VeryLazy',
   dependencies = { 'nvim-tree/nvim-web-devicons' },
   opts = {},
   config = function()
@@ -8,14 +9,7 @@ return {
       -- fzf_bin = 'sk',
       -- Padding can help kitty term users with double-width icon rendering
       file_icon_padding = '',
-      -- Uncomment if your terminal/font does not support unicode character
-      -- 'EN SPACE' (U+2002), the below sets it to 'NBSP' (U+00A0) instead
-      -- nbsp = '\xc2\xa0',
-      -- Function override for opening the help window (default bound to `<F1>`)
-      -- Override this function if you want to customize window config of the
-      -- help window (location, width, border, etc.)
       help_open_win = vim.api.nvim_open_win,
-      -- fzf_bin = ...,
       winopts = {
         -- split = "belowright new",-- open in a split instead?
         -- "belowright new"  : split below
@@ -25,9 +19,9 @@ return {
         -- Only valid when using a float window
         -- (i.e. when 'split' is not defined, default)
         height = 0.85, -- window height
-        width = 0.80, -- window width
-        row = 0.35, -- window row position (0=top, 1=bottom)
-        col = 0.50, -- window col position (0=left, 1=right)
+        width = 0.80,  -- window width
+        row = 0.35,    -- window row position (0=top, 1=bottom)
+        col = 0.50,    -- window col position (0=left, 1=right)
         -- border argument passthrough to nvim_open_win()
         border = 'rounded',
         -- Backdrop opacity, 0 is fully opaque, 100 is fully transparent (i.e. disabled)
@@ -51,23 +45,23 @@ return {
           -- and fzf values (e.g. "border-top", "none")
           -- native fzf previewers (bat/cat/git/etc)
           -- can also be set to `fun(winopts, metadata)`
-          wrap = false, -- preview line wrap (fzf's 'wrap|nowrap')
-          hidden = false, -- start preview hidden
-          vertical = 'down:45%', -- up|down:size
+          wrap = false,             -- preview line wrap (fzf's 'wrap|nowrap')
+          hidden = false,           -- start preview hidden
+          vertical = 'down:45%',    -- up|down:size
           horizontal = 'right:60%', -- right|left:size
-          layout = 'flex', -- horizontal|vertical|flex
-          flip_columns = 100, -- #cols to switch to horizontal on flex
+          layout = 'flex',          -- horizontal|vertical|flex
+          flip_columns = 100,       -- #cols to switch to horizontal on flex
           -- Only used with the builtin previewer:
-          title = true, -- preview border title (file/buf)?
-          title_pos = 'center', -- left|center|right, title alignment
-          scrollbar = 'float', -- `false` or string:'float|border'
+          title = true,             -- preview border title (file/buf)?
+          title_pos = 'center',     -- left|center|right, title alignment
+          scrollbar = 'float',      -- `false` or string:'float|border'
           -- float:  in-window floating border
           -- border: in-border "block" marker
           scrolloff = -1, -- float scrollbar offset from right
           -- applies only when scrollbar = 'float'
-          delay = 20, -- delay(ms) displaying the preview
+          delay = 20,     -- delay(ms) displaying the preview
           -- prevents lag on fast scrolling
-          winopts = { -- builtin previewer window options
+          winopts = {     -- builtin previewer window options
             number = true,
             relativenumber = false,
             cursorline = true,
@@ -163,40 +157,11 @@ return {
         ['--height'] = '100%',
         ['--layout'] = 'reverse',
         ['--border'] = 'none',
-        ['--highlight-line'] = true, -- fzf >= v0.53
+        ['--highlight-line'] = true,
       },
-
-      -- Only used when fzf_bin = "fzf-tmux", by default opens as a
-      -- popup 80% width, 80% height (note `-p` requires tmux > 3.2)
-      -- and removes the sides margin added by `fzf-tmux` (fzf#3162)
-      -- for more options run `fzf-tmux --help`
-      -- NOTE: since fzf v0.53 / sk v0.15 it is recommended to use
-      -- native tmux integration by adding the below to `fzf_opts`
-      fzf_tmux_opts = { ['-p'] = '80%,80%', ['--margin'] = '0,0' }, -- Fzf CLI flags
-      -- fzf_opts = { ["--tmux"] = "center,80%,60%" },
-      --
-      -- Set fzf's terminal colorscheme (optional)
-      --
-      -- Set to `true` to automatically generate an fzf's colorscheme from
-      -- Neovim's current colorscheme:
-      -- fzf_colors       = true,
-      --
-      -- Building a custom colorscheme, has the below specifications:
-      -- If rhs is of type "string" rhs will be passed raw, e.g.:
-      --   `["fg"] = "underline"` will be translated to `--color fg:underline`
-      -- If rhs is of type "table", the following convention is used:
-      --   [1] "what" field to extract from the hlgroup, i.e "fg", "bg", etc.
-      --   [2] Neovim highlight group(s), can be either "string" or "table"
-      --       when type is "table" the first existing highlight group is used
-      --   [3+] any additional fields are passed raw to fzf's command line args
-      -- Example of a "fully loaded" color option:
-      --   `["fg"] = { "fg", { "NonExistentHl", "Comment" }, "underline", "bold" }`
-      -- Assuming `Comment.fg=#010101` the resulting fzf command line will be:
-      --   `--color fg:#010101:underline:bold`
-      -- NOTE: to pass raw arguments `fzf_opts["--color"]` or `fzf_args`
-      -- NOTE: below is an example, not the defaults:
+      fzf_tmux_opts = { ['-p'] = '80%,80%', ['--margin'] = '0,0' },
       fzf_colors = {
-        true, -- inherit fzf colors that aren't specified below from
+        true,
         -- the auto-generated theme similar to `fzf_colors=true`
         ['fg'] = { 'fg', 'CursorLine' },
         ['bg'] = { 'bg', 'Normal' },
@@ -211,11 +176,11 @@ return {
         ['spinner'] = { 'fg', 'Label' },
         ['header'] = { 'fg', 'Comment' },
         ['gutter'] = '-1',
-      }, -- Fzf `--color` specification
+      },                           -- Fzf `--color` specification
       hls = {
-        normal = 'Normal', -- highlight group for normal fg/bg
+        normal = 'Normal',         -- highlight group for normal fg/bg
         preview_normal = 'Normal', -- highlight group for preview fg/bg
-      }, -- Highlights
+      },                           -- Highlights
       previewers = {
         cat = {
           cmd = 'cat',
@@ -244,10 +209,10 @@ return {
           cmd = 'man -c %s | col -bx',
         },
         builtin = {
-          syntax = true, -- preview syntax highlight?
-          syntax_limit_l = 0, -- syntax limit (lines), 0=nolimit
+          syntax = true,                -- preview syntax highlight?
+          syntax_limit_l = 0,           -- syntax limit (lines), 0=nolimit
           syntax_limit_b = 1024 * 1024, -- syntax limit (bytes), 0=nolimit
-          limit_b = 1024 * 1024 * 10, -- preview limit (bytes), 0=nolimit
+          limit_b = 1024 * 1024 * 10,   -- preview limit (bytes), 0=nolimit
           -- previewer treesitter options:
           -- enable specific filetypes with: `{ enabled = { "lua" } }
           -- exclude specific filetypes with: `{ disabled = { "lua" } }
@@ -314,9 +279,9 @@ return {
         -- set to 'false' to disable
         prompt = 'Files❯ ',
         multiprocess = true, -- run command in a separate process
-        git_icons = false, -- show git icons?
-        file_icons = true, -- show file icons (true|"devicons"|"mini")?
-        color_icons = true, -- colorize file|git icons
+        git_icons = false,   -- show git icons?
+        file_icons = true,   -- show file icons (true|"devicons"|"mini")?
+        color_icons = true,  -- colorize file|git icons
         -- path_shorten   = 1,              -- 'true' or number, shorten path?
         -- Uncomment for custom vscode-like formatter where the filename is first:
         -- e.g. "fzf-lua/previewer/fzf.lua" => "fzf.lua previewer/fzf-lua"
@@ -335,14 +300,14 @@ return {
         -- query prompt string (fzf.vim style), header line or both
         -- cwd_header = true,
         cwd_prompt = true,
-        cwd_prompt_shorten_len = 32, -- shorten prompt beyond this length
-        cwd_prompt_shorten_val = 1, -- shortened path parts length
+        cwd_prompt_shorten_len = 32,        -- shorten prompt beyond this length
+        cwd_prompt_shorten_val = 1,         -- shortened path parts length
         toggle_ignore_flag = '--no-ignore', -- flag toggled in `actions.toggle_ignore`
-        toggle_hidden_flag = '--hidden', -- flag toggled in `actions.toggle_hidden`
-        toggle_follow_flag = '-L', -- flag toggled in `actions.toggle_follow`
-        hidden = true, -- enable hidden files by default
-        follow = false, -- do not follow symlinks by default
-        no_ignore = false, -- respect ".gitignore"  by default
+        toggle_hidden_flag = '--hidden',    -- flag toggled in `actions.toggle_hidden`
+        toggle_follow_flag = '-L',          -- flag toggled in `actions.toggle_follow`
+        hidden = true,                      -- enable hidden files by default
+        follow = false,                     -- do not follow symlinks by default
+        no_ignore = false,                  -- respect ".gitignore"  by default
         actions = {
           -- inherits from 'actions.files', here we can override
           -- or set bind to 'false' to disable a default action
@@ -357,9 +322,9 @@ return {
           prompt = 'GitFiles❯ ',
           cmd = 'git ls-files --exclude-standard',
           multiprocess = true, -- run command in a separate process
-          git_icons = true, -- show git icons?
-          file_icons = true, -- show file icons (true|"devicons"|"mini")?
-          color_icons = true, -- colorize file|git icons
+          git_icons = true,    -- show git icons?
+          file_icons = true,   -- show file icons (true|"devicons"|"mini")?
+          color_icons = true,  -- colorize file|git icons
           -- force display the cwd header line regardless of your current working
           -- directory can also be used to hide the header when not wanted
           -- cwd_header = true
@@ -453,9 +418,9 @@ return {
         tags = {
           prompt = 'Tags> ',
           cmd = [[git for-each-ref --color --sort="-taggerdate" --format ]]
-            .. [["%(color:yellow)%(refname:short)%(color:reset) ]]
-            .. [[%(color:green)(%(taggerdate:relative))%(color:reset)]]
-            .. [[ %(subject) %(color:blue)%(taggername)%(color:reset)" refs/tags]],
+              .. [["%(color:yellow)%(refname:short)%(color:reset) ]]
+              .. [[%(color:green)(%(taggerdate:relative))%(color:reset)]]
+              .. [[ %(subject) %(color:blue)%(taggername)%(color:reset)" refs/tags]],
           preview = [[git log --graph --color --pretty=format:"%C(yellow)%h%Creset ]] .. [[%Cgreen(%><(12)%cr%><|(12))%Creset %s %C(blue)<%an>%Creset" {1}]],
           actions = { ['enter'] = actions.git_checkout },
         },
@@ -486,17 +451,17 @@ return {
         prompt = 'Rg❯ ',
         input_prompt = 'Grep For❯ ',
         multiprocess = true, -- run command in a separate process
-        git_icons = false, -- show git icons?
-        file_icons = true, -- show file icons (true|"devicons"|"mini")?
-        color_icons = true, -- colorize file|git icons
+        git_icons = true,    -- show git icons?
+        file_icons = true,   -- show file icons (true|"devicons"|"mini")?
+        color_icons = true,  -- colorize file|git icons
         -- executed command priority is 'cmd' (if exists)
         -- otherwise auto-detect prioritizes `rg` over `grep`
         -- default options are controlled by 'rg|grep_opts'
         -- cmd            = "rg --vimgrep",
         grep_opts = '--binary-files=without-match --line-number --recursive --color=auto --perl-regexp -e',
         rg_opts = '--column --line-number --no-heading --color=always --smart-case --max-columns=4096 -e',
-        hidden = false, -- disable hidden files by default
-        follow = false, -- do not follow symlinks by default
+        hidden = true,     -- disable hidden files by default
+        follow = false,    -- do not follow symlinks by default
         no_ignore = false, -- respect ".gitignore"  by default
         -- Uncomment to use the rg config file `$RIPGREP_CONFIG_PATH`
         -- RIPGREP_CONFIG_PATH = vim.env.RIPGREP_CONFIG_PATH
@@ -505,8 +470,8 @@ return {
         -- search strings will be split using the 'glob_separator' and translated
         -- to '--iglob=' arguments, requires 'rg'
         -- can still be used when 'false' by calling 'live_grep_glob' directly
-        rg_glob = true, -- default to glob parsing with `rg`
-        glob_flag = '--iglob', -- for case sensitive globs use '--glob'
+        rg_glob = true,            -- default to glob parsing with `rg`
+        glob_flag = '--iglob',     -- for case sensitive globs use '--glob'
         glob_separator = '%s%-%-', -- query separator pattern (lua): ' --'
         -- advanced usage: for custom argument parsing define
         -- 'rg_glob_fn' to return a pair:
@@ -528,7 +493,7 @@ return {
           -- uncomment to enable '.gitignore' toggle for grep
           -- ["ctrl-r"]   = { actions.toggle_ignore }
         },
-        no_header = false, -- hide grep|cwd header?
+        no_header = false,   -- hide grep|cwd header?
         no_header_i = false, -- hide interactive header?
       },
       args = {
@@ -548,12 +513,12 @@ return {
       },
       buffers = {
         prompt = 'Buffers❯ ',
-        file_icons = true, -- show file icons (true|"devicons"|"mini")?
-        color_icons = true, -- colorize file|git icons
+        file_icons = true,    -- show file icons (true|"devicons"|"mini")?
+        color_icons = true,   -- colorize file|git icons
         sort_lastused = true, -- sort buffers() by last used
         show_unloaded = true, -- show unloaded buffers
-        cwd_only = false, -- buffers for the cwd only
-        cwd = nil, -- buffers list for a given dir
+        cwd_only = false,     -- buffers for the cwd only
+        cwd = nil,            -- buffers list for a given dir
         actions = {
           -- actions inherit from 'actions.files' and merge
           -- by supplying a table of functions we're telling
@@ -567,7 +532,7 @@ return {
         prompt = 'Tabs❯ ',
         tab_title = 'Tab',
         tab_marker = '<<',
-        file_icons = true, -- show file icons (true|"devicons"|"mini")?
+        file_icons = true,  -- show file icons (true|"devicons"|"mini")?
         color_icons = true, -- colorize file|git icons
         actions = {
           -- actions inherit from 'actions.files' and merge
@@ -584,11 +549,11 @@ return {
       lines = {
         prompt = 'Lines❯ ',
         file_icons = true,
-        show_bufname = true, -- display buffer name
-        show_unloaded = true, -- show unloaded buffers
-        show_unlisted = false, -- exclude 'help' buffers
-        no_term_buffers = true, -- exclude 'term' buffers
-        sort_lastused = true, -- sort by most recent
+        show_bufname = true,             -- display buffer name
+        show_unloaded = true,            -- show unloaded buffers
+        show_unlisted = false,           -- exclude 'help' buffers
+        no_term_buffers = true,          -- exclude 'term' buffers
+        sort_lastused = true,            -- sort by most recent
         winopts = { treesitter = true }, -- enable TS highlights
         fzf_opts = {
           -- do not include bufnr in fuzzy matching
@@ -616,12 +581,12 @@ return {
           -- this action toggles between 'grep' and 'live_grep'
           ['ctrl-g'] = { actions.grep_lgrep },
         },
-        no_header = false, -- hide grep|cwd header?
+        no_header = false,   -- hide grep|cwd header?
         no_header_i = false, -- hide interactive header?
       },
       btags = {
         prompt = 'BTags❯ ',
-        ctags_file = nil, -- auto-detect from tags-option
+        ctags_file = nil,     -- auto-detect from tags-option
         ctags_autogen = true, -- dynamically generate ctags each call
         multiprocess = true,
         file_icons = false,
@@ -641,7 +606,7 @@ return {
       awesome_colorschemes = {
         prompt = 'Colorschemes❯ ',
         live_preview = true, -- apply the colorscheme on preview?
-        max_threads = 5, -- max download/update threads
+        max_threads = 5,     -- max download/update threads
         winopts = { row = 0, col = 0.99, width = 0.50 },
         fzf_opts = {
           ['--multi'] = true,
@@ -695,7 +660,7 @@ return {
         cwd_only = false, -- LSP/diagnostics for cwd only?
         async_or_timeout = 5000, -- timeout(ms) or 'true' for async calls
         file_icons = true,
-        git_icons = false,
+        git_icons = true,
         jump1 = true, -- skip the UI when result is a single entry
         jump1_action = FzfLua.actions.file_edit,
         -- The equivalent of using `includeDeclaration` in lsp buf calls, e.g:
@@ -706,7 +671,7 @@ return {
           -- lsp_query      = "foo"       -- query passed to the LSP directly
           -- query          = "bar"       -- query passed to fzf prompt for fuzzy matching
           async_or_timeout = true, -- symbols are async by default
-          symbol_style = 1, -- style for document/workspace symbols
+          symbol_style = 1,        -- style for document/workspace symbols
           -- false: disable,    1: icon+kind
           --     2: icon only,  3: kind only
           -- NOTE: icons are extracted from
@@ -767,20 +732,20 @@ return {
           prompt = 'LSP Finder> ',
           file_icons = true,
           color_icons = true,
-          async = true, -- async by default
-          silent = true, -- suppress "not found"
-          separator = '| ', -- separator after provider prefix, `false` to disable
+          async = true,              -- async by default
+          silent = true,             -- suppress "not found"
+          separator = '| ',          -- separator after provider prefix, `false` to disable
           includeDeclaration = true, -- include current declaration in LSP context
           -- by default display all LSP locations
           -- to customize, duplicate table and delete unwanted providers
           providers = {
-            { 'references', prefix = require('fzf-lua').utils.ansi_codes.blue 'ref ' },
-            { 'definitions', prefix = require('fzf-lua').utils.ansi_codes.green 'def ' },
-            { 'declarations', prefix = require('fzf-lua').utils.ansi_codes.magenta 'decl' },
-            { 'typedefs', prefix = require('fzf-lua').utils.ansi_codes.red 'tdef' },
+            { 'references',      prefix = require('fzf-lua').utils.ansi_codes.blue 'ref ' },
+            { 'definitions',     prefix = require('fzf-lua').utils.ansi_codes.green 'def ' },
+            { 'declarations',    prefix = require('fzf-lua').utils.ansi_codes.magenta 'decl' },
+            { 'typedefs',        prefix = require('fzf-lua').utils.ansi_codes.red 'tdef' },
             { 'implementations', prefix = require('fzf-lua').utils.ansi_codes.green 'impl' },
-            { 'incoming_calls', prefix = require('fzf-lua').utils.ansi_codes.cyan 'in  ' },
-            { 'outgoing_calls', prefix = require('fzf-lua').utils.ansi_codes.yellow 'out ' },
+            { 'incoming_calls',  prefix = require('fzf-lua').utils.ansi_codes.cyan 'in  ' },
+            { 'outgoing_calls',  prefix = require('fzf-lua').utils.ansi_codes.yellow 'out ' },
           },
         },
       },
@@ -791,8 +756,8 @@ return {
         git_icons = false,
         diag_icons = true,
         diag_source = true, -- display diag source (e.g. [pycodestyle])
-        icon_padding = '', -- add padding for wide diagnostics signs
-        multiline = true, -- concatenate multi-line diags into a single line
+        icon_padding = '',  -- add padding for wide diagnostics signs
+        multiline = true,   -- concatenate multi-line diags into a single line
         -- severity_only:   keep any matching exact severity
         -- severity_limit:  keep any equal or more severe (lower)
         -- severity_bound:  keep any equal or less severe (higher)
@@ -825,7 +790,7 @@ return {
           ['--delimiter'] = '[\t]',
           ['--tabstop'] = '4',
           ['--tiebreak'] = 'end,index', -- prefer dirs ending with search term
-          ['--nth'] = '2..', -- exclude score from fuzzy matching
+          ['--nth'] = '2..',            -- exclude score from fuzzy matching
         },
         actions = { enter = actions.cd },
       },

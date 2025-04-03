@@ -1,5 +1,6 @@
 return {
   'gbprod/yanky.nvim',
+  event = 'VeryLazy',
   enabled = true,
   keys = {
     { '<leader>y', '<cmd>YankyRingHistory<cr>', mode = { 'n', 'x' }, desc = 'Yank Ring History (Yanky)' },

@@ -184,6 +184,7 @@ return {
             end
             return text
           end
+
           vim_item.abbr = trim(vim_item.abbr)
           -- Source
           vim_item.menu = ({
@@ -203,6 +204,7 @@ return {
       },
       sorting = {
         comparators = {
+          require("clangd_extensions.cmp_scores"),
           cmp.config.compare.score,
           cmp.config.compare.offset,
           cmp.config.compare.exact,
@@ -241,7 +243,7 @@ return {
       -- }),
       -- Same as above
       sources = cmp.config.sources {
-        { name = 'path', group_index = 1 },
+        { name = 'path',    group_index = 1 },
         { name = 'cmdline', group_index = 2 },
       },
       matching = { disallow_symbol_nonprefix_matching = false },

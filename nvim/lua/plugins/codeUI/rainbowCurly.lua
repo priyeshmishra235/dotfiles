@@ -1,7 +1,6 @@
 return {
   'HiPhish/rainbow-delimiters.nvim',
-
-  -- @type rainbow_delimiters.config
+  event = 'VeryLazy',
   config = function()
     require('rainbow-delimiters.setup').setup {
       strategy = {
@@ -22,10 +21,6 @@ return {
         'RainbowDelimiterBlue',
         'RainbowDelimiterCyan',
         'RainbowDelimiterViolet',
-        'RainbowDelimiterPink',
-        'RainbowDelimiterTeal',
-        'RainbowDelimiterLime',
-        'RainbowDelimiterWhite',
       },
     }
   end,

@@ -9,26 +9,23 @@ return {
     vim.o.foldlevel = 99
     vim.o.foldlevelstart = 99
     vim.o.foldenable = true
-
     -- ╭─────────╮
     -- │ keymaps │
     -- ╰─────────╯
-
     vim.keymap.set('n', 'zR', require('ufo').openAllFolds, { desc = 'Open all folds' })
     vim.keymap.set('n', 'zM', require('ufo').closeAllFolds, { desc = 'Close all folds' })
     vim.keymap.set('n', 'zr', require('ufo').openFoldsExceptKinds, { desc = 'Open folds except specified kinds' })
-    vim.keymap.set('n', 'zm', require('ufo').closeFoldsWith, { desc = 'Close folds with a specified level (0 closes all)' })
+    vim.keymap.set('n', 'zm', require('ufo').closeFoldsWith,
+      { desc = 'Close folds with a specified level (0 closes all)' })
     vim.keymap.set('n', 'zp', function()
       local winid = require('ufo').peekFoldedLinesUnderCursor()
       if not winid then
-        -- choose one of coc.nvim and nvim lsp
-        -- vim.fn.CocActionAsync 'definitionHover' -- coc.nvim
         vim.lsp.buf.hover()
       end
     end, { desc = 'Peek folded lines under cursor or show hover info' })
     local handler = function(virtText, lnum, endLnum, width, truncate)
       local newVirtText = {}
-      local suffix = (' 󰁂 %d '):format(endLnum - lnum) --   󰁂
+      local suffix = (' 󰁂 %d '):format(endLnum - lnum)
       local sufWidth = vim.fn.strdisplaywidth(suffix)
       local targetWidth = width - sufWidth
       local curWidth = 0
@@ -67,6 +64,7 @@ return {
           jumpBot = ']',
         },
       },
+      enable_get_fold_virt_text = false,
       fold_virt_text_handler = handler,
       provider_selector = function(bufnr, filetype, buftype)
         return { 'treesitter', 'indent' }

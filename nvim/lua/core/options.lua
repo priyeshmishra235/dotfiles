@@ -33,7 +33,7 @@ vim.o.pumheight = 10
 vim.o.ignorecase = true
 vim.o.incsearch = true
 vim.o.smartcase = true
-vim.o.hlsearch = false
+vim.o.hlsearch = true
 
 -- Window Splitting
 vim.o.splitbelow = true
@@ -64,4 +64,7 @@ vim.o.conceallevel = 0
 vim.opt.runtimepath:remove '/usr/share/vim/vimfiles'
 vim.o.sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions'
 vim.opt.shortmess:append 'c'
-vim.opt.shell = "C:/Program Files/Git/bin/bash.exe"
+-- vim.opt.shell = 'C:/Program Files/Git/bin/bash.exe'
+-- vim.opt.shell = "C:\\Program Files\\PowerShell\\7\\pwsh.exe"
+vim.opt.shell = "C:\\Windows\\System32\\cmd.exe"
+vim.opt.confirm = true

@@ -1,5 +1,6 @@
 return {
   'mangelozzi/rgflow.nvim',
+  event = 'VeryLazy',
   config = function()
     require('rgflow').setup {
       -- Set the default rip grep flags and options for when running a search via

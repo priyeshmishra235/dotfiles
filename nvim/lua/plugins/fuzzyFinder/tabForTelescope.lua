@@ -1,5 +1,6 @@
 return {
   'FabianWirth/search.nvim',
+  event = 'VeryLazy',
   dependencies = { 'nvim-telescope/telescope.nvim' },
   mappings = {
     next = { { 'L', 'n' }, { '<Tab>', 'n' }, { '<Tab>', 'i' } },
