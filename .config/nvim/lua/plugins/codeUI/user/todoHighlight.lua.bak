@@ -1,0 +1,27 @@
+local M = {}
+
+M.setup = function()
+  vim.api.nvim_set_hl(0, "@MyTodoCapture", {
+    fg = "#ffffff",
+    bg = "#5f0000",
+    bold = true,
+  })
+  local keywords = { "TODO", "FIXME", "BUG", "NOTE" }
+  local regex = "\\b(" .. table.concat(keywords, "|") .. ")\\b"
+
+  local query = string.format([[
+  (
+    (comment) @MyTodoCapture
+    (#match? @MyTodoCapture "%s")
+  )
+]], regex)
+  local langs = { "c", "cpp", "lua", "python" }
+  for _, lang in ipairs(langs) do
+    local ok = pcall(vim.treesitter.query.set, lang, "highlights", query)
+    if not ok then
+      vim.notify("Failed to apply TODO Tree-sitter query for language: " .. lang, vim.log.levels.WARN)
+    end
+  end
+end
+
+return M
