@@ -12,6 +12,7 @@ alias rrd="~/CodeBase/bash++/singleDebug.sh"
 # System Maintenance scripts
 alias cpum="sudo ~/CodeBase/bash++/sysMng/cpuManager.sh"
 alias sysm="sudo ~/CodeBase/bash++/sysMng/sysMaintenance.sh"
+alias bhb="sudo ~/CodeBase/bash++/sysMng/borg-home-bakcup.sh"
 # Zen mode bonsai script
 alias bonsai="~/CodeBase/bash++/sysMng/bonsai.sh"
 
