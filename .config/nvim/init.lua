@@ -118,7 +118,7 @@ require('lazy').setup {
   -- ╰─────────────────────────╯
   -- require 'plugins.splitScreen.borderCurrWin',
   -- require 'plugins.splitScreen.smartSplit',
-  require 'plugins.splitScreen.winShift',
+  -- require 'plugins.splitScreen.winShift',
   -- ╭──────────────────────╮
   -- │ Text Editing Plugins │
   -- ╰──────────────────────╯

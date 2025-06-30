@@ -58,23 +58,38 @@ return {
         type = "codelldb",
         request = "launch",
         program = function()
-          local filepath = vim.fn.expand('%:p')
-          local project_root = find_top_level_cmake(filepath) or vim.fn.getcwd()
-          local bin_dir = project_root .. "/build/bin"
+          local filepath = vim.fn.expand('%:p')                 -- full path to current file
+          local filedir = vim.fn.fnamemodify(filepath, ':h')    -- directory of current file
+          local filename = vim.fn.fnamemodify(filepath, ':t:r') -- filename without extension
+          local cmake_root = find_top_level_cmake(filepath)     -- top-most cmake root, if any
 
-          local handle = io.popen("find '" .. bin_dir .. "' -type f -executable | head -n 1")
-          local binary = handle:read("*a"):gsub("%s+$", "")
-          handle:close()
+          if cmake_root then
+            --CMake project: look for executable in build dir
+            local bin_dir = cmake_root .. "/build/"
+            local handle = io.popen("find '" .. bin_dir .. "' -type f -executable | head -n 1")
+            local binary = handle:read("*a"):gsub("%s+$", "")
+            handle:close()
 
-          if binary == "" then
-            vim.notify("No executable found in " .. bin_dir, vim.log.levels.ERROR)
-            return ""
+            if binary == "" then
+              vim.notify("No executable found in " .. bin_dir, vim.log.levels.ERROR)
+              return ""
+            else
+              vim.notify("Launching CMake binary: " .. binary, vim.log.levels.INFO)
+              return binary
+            end
           else
-            vim.notify("Launching: " .. binary, vim.log.levels.INFO)
-            return binary
+            --No CMakeLists.txt: assume single file build in same folder
+            local fallback_binary = filedir .. "/" .. filename
+            if vim.fn.filereadable(fallback_binary) == 1 and vim.fn.getfperm(fallback_binary):sub(3, 3) == 'x' then
+              vim.notify("Launching local binary: " .. fallback_binary, vim.log.levels.INFO)
+              return fallback_binary
+            else
+              vim.notify("No executable found at " .. fallback_binary, vim.log.levels.ERROR)
+              return ""
+            end
           end
         end,
-        cwd = '${workspaceFolder}',
+        '${workspaceFolder}',
         args = {},
         stopOnEntry = false,
       },
