@@ -4,7 +4,7 @@ set -euo pipefail
 
 # === CONFIG ===
 USER_HOME="/home/priyeshmishra"
-REPO="/run/media/priyeshmishra/Aris/borg-Hyprland-home"
+REPO="/run/media/priyeshmishra/Medusa/borg-home"
 NOW=$(date +%Y-%m-%d--%H-%M)
 ARCHIVE="home-$NOW"
 
@@ -22,6 +22,8 @@ borg create \
   "$REPO::$ARCHIVE" \
   "$USER_HOME" \
   --exclude "$USER_HOME/Clone" \
+  --exclude "$USER_HOME/Obsidian" \
+  --exclude "$USER_HOME/borg-home-KEY-Passphrase" \
   --exclude "$USER_HOME/Desktop" \
   --exclude "$USER_HOME/Documents" \
   --exclude "$USER_HOME/Downloads" \

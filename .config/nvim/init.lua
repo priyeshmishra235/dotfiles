@@ -22,9 +22,9 @@ require('lazy').setup {
   -- │ code UI │
   -- ╰─────────╯
   require 'plugins.codeUI.autopairs',
+  require 'plugins.codeUI.rainbowCurly',
   -- require 'plugins.codeUI.hlChunk',
   -- require 'plugins.codeUI.deadColumn',
-  require 'plugins.codeUI.rainbowCurly',
   -- require 'plugins.codeUI.strictFormatting',
   -- require 'plugins.codeUI.wordHighlight',
   -- require 'plugins.codeUI.codeRunner',
@@ -50,8 +50,8 @@ require('lazy').setup {
   require 'plugins.fuzzyFinder.flash',
   require 'plugins.fuzzyFinder.fzf',
   require 'plugins.fuzzyFinder.nvimTreesitter',
-  -- require 'plugins.fuzzyFinder.tabForTelescope',
   require 'plugins.fuzzyFinder.telescope',
+  -- require 'plugins.fuzzyFinder.tabForTelescope',
   -- ╭───────╮
   -- │ games │
   -- ╰───────╯
@@ -59,7 +59,7 @@ require('lazy').setup {
   -- ╭─────╮
   -- │ git │
   -- ╰─────╯
-  require 'plugins.git.gitFugitive',
+  -- require 'plugins.git.gitFugitive',
   require 'plugins.git.gitSigns',
   -- ╭─────────────────────╮
   -- │ LSP-related plugins │
@@ -70,8 +70,8 @@ require('lazy').setup {
   require 'plugins.lsp.luasnip',
   require 'plugins.lsp.mason',
   require 'plugins.lsp.trouble',
-  -- require 'plugins.lsp.cmake-tools',
   require 'plugins.lsp.refactoring',
+  -- require 'plugins.lsp.cmake-tools',
   -- require 'plugins.lsp.codeContext',
   -- require 'plugins.lsp.clangd-extensions',
   -- ╭─────╮
@@ -96,8 +96,8 @@ require('lazy').setup {
   -- │ Navigation Bar plugins │
   -- ╰────────────────────────╯
   require 'plugins.navigationBar.bufferLine',
-  require 'plugins.navigationBar.dropBar',
   require 'plugins.navigationBar.luaLine',
+  -- require 'plugins.navigationBar.dropBar',
   -- require 'plugins.navigationBar.winBar',
   -- ╭────────────────────────────╮
   -- │ UI Enhancements for Neovim │
@@ -122,15 +122,15 @@ require('lazy').setup {
   -- ╭──────────────────────╮
   -- │ Text Editing Plugins │
   -- ╰──────────────────────╯
-  require 'plugins.textEditing.comment',
   -- require 'plugins.textEditing.textMove',
   require 'plugins.textEditing.vim-visual-multi',
+  require 'plugins.textEditing.comment',
   require 'plugins.textEditing.yanky',
   -- ╭─────────────────╮
   -- │ Utility Plugins │
   -- ╰─────────────────╯
-  require 'plugins.utilities.autoSession',
-  require 'plugins.utilities.bookmark',
+  -- require 'plugins.utilities.autoSession',
+  -- require 'plugins.utilities.bookmark',
   -- require 'plugins.utilities.pomodoro',
   require 'plugins.utilities.terminal',
   require 'plugins.utilities.whichKey',
@@ -145,13 +145,5 @@ require('lazy').setup {
 --   highlight Folded guibg=NONE ctermbg=NONE
 --   highlight EndOfBuffer guibg=NONE ctermbg=NONE
 -- ]]
--- ╭────────────────────────────────╮
--- │ Set default path for file tree │
--- ╰────────────────────────────────╯
-vim.api.nvim_create_autocmd('VimEnter', {
-  callback = function()
-    vim.cmd('cd ' .. vim.fn.expand('$HOME'))
-  end,
-})
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

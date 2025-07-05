@@ -14,7 +14,7 @@ fi
 echo -e "\n\033[1;34m===============================\033[0m"
 echo -e "\033[1;32m🔧 CPU Manager for Arch Linux\033[0m"
 echo -e "\033[1;34m===============================\033[0m"
-echo -e "1) \033[1;33mDisable CPUs from cpu2 to cpu23\033[0m"
+echo -e "1) \033[1;33mDisable CPUs from cpu1 to cpu23\033[0m"
 echo -e "2) \033[1;33mEnable all CPUs (cpu1 to cpu23)\033[0m"
 echo -e "3) \033[1;33mSet CPU frequency range\033[0m"
 echo -e "4) \033[1;33mDisable CPUs from a specific starting CPU\033[0m"
@@ -26,11 +26,11 @@ read -p "Enter your choice [1-6]: " choice
 case "$choice" in
   1)
     # Disable CPUs from cpu2 to cpu23
-    echo -e "\033[1;34mDisabling CPUs from cpu2 to cpu23...\033[0m"
-    for cpu in $(seq 2 23); do
+    echo -e "\033[1;34mDisabling CPUs from cpu1 to cpu23...\033[0m"
+    for cpu in $(seq 1 23); do
         echo 0 > /sys/devices/system/cpu/cpu$cpu/online
     done
-    echo -e "\033[1;32m✅ CPUs 2 to 23 have been disabled.\033[0m"
+    echo -e "\033[1;32m✅ CPUs 1 to 23 have been disabled.\033[0m"
     echo -e "ℹ️ \033[1;33mCPU0 cannot be disabled.\033[0m"
     ;;
 

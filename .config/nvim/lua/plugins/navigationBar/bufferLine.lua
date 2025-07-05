@@ -51,9 +51,9 @@ return {
           return buf.name
         end,
         max_name_length = 15,
-        max_prefix_length = 15, -- prefix used when a buffer is de-duplicated
-        truncate_names = true,  -- whether or not tab names should be truncated
-        tab_size = 10,
+        max_prefix_length = 1, -- prefix used when a buffer is de-duplicated
+        truncate_names = true, -- whether or not tab names should be truncated
+        tab_size = 1,
         diagnostics = 'nvim_lsp',
         diagnostics_update_in_insert = false, -- only applies to coc
         diagnostics_update_on_event = true,   -- use nvim's diagnostic handler

@@ -1,3 +1,11 @@
+-- ╭────────────────────────────────╮
+-- │ Set default path for file tree │
+-- ╰────────────────────────────────╯
+vim.api.nvim_create_autocmd('VimEnter', {
+  callback = function()
+    vim.cmd('cd ' .. vim.fn.expand('$HOME'))
+  end,
+})
 ----------------------------------------------------------------------
 --                   Removes trailing whitespaces                   --
 ----------------------------------------------------------------------
