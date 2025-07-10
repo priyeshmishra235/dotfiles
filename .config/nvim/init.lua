@@ -71,6 +71,7 @@ require('lazy').setup {
   require 'plugins.lsp.mason',
   require 'plugins.lsp.trouble',
   require 'plugins.lsp.refactoring',
+  require 'plugins.lsp.glsl',
   -- require 'plugins.lsp.cmake-tools',
   -- require 'plugins.lsp.codeContext',
   -- require 'plugins.lsp.clangd-extensions',
@@ -96,7 +97,7 @@ require('lazy').setup {
   -- │ Navigation Bar plugins │
   -- ╰────────────────────────╯
   require 'plugins.navigationBar.bufferLine',
-  require 'plugins.navigationBar.luaLine',
+  -- require 'plugins.navigationBar.luaLine',
   -- require 'plugins.navigationBar.dropBar',
   -- require 'plugins.navigationBar.winBar',
   -- ╭────────────────────────────╮
@@ -135,6 +136,7 @@ require('lazy').setup {
   require 'plugins.utilities.terminal',
   require 'plugins.utilities.whichKey',
 }
+-------
 -- ╭────────────────────────────────────╮
 -- │ Make Neovim background transparent │
 -- ╰────────────────────────────────────╯

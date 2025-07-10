@@ -12,13 +12,14 @@ local opts = { noremap = true, silent = true }
 
 -- Set Esc
 map('i', 'kj', '<Esc>', opts)
+map('i', 'KJ', '<Esc>', opts)
 map('i', ';;', '<Esc>', opts)
 
 -- save file
 map('n', '<C-s>', '<cmd> w <CR>', opts)
 
 -- save file without auto-formatting
--- map('n', '<leader>sn', '<cmd>noautocmd w <CR>', opts)
+map('n', '<leader>sw', '<cmd>noautocmd w <CR>', opts)
 
 -- Indent properly when entering insert mode on empty lines
 map('n', 'i', function()

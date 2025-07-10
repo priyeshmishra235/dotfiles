@@ -1,5 +1,6 @@
 #  Aliases 
 #
+export PATH="$HOME/.cargo/bin:$PATH"
 # CMake auto running and building for c++
 alias brr="~/CodeBase/bash++/buildRelease.sh"
 alias bd="~/CodeBase/bash++/buildDebug.sh"

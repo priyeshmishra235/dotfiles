@@ -138,6 +138,16 @@ return {
         single_file_support = true,
       })
 
+      require('lspconfig').glsl_analyzer.setup({
+        filetypes = { "glsl", "vert", "frag", "comp", "geom" },
+        root_dir = require("lspconfig.util").root_pattern(".git", "*.glsl", "*.vert", "*.frag"),
+      })
+      require('lspconfig').wgsl_analyzer.setup({
+        cmd = { "/home/priyeshmishra/.cargo/bin/wgsl-analyzer" },
+        filetypes = { "wgsl" },
+        root_dir = require("lspconfig.util").root_pattern("*.wgsl", ".git"),
+        settings = {},
+      })
       -- Lua
       local lspconfig = require("lspconfig")
 

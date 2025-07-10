@@ -6,6 +6,7 @@ return {
       local mason = require 'mason'
 
       mason.setup {
+        automatic_enable = false,
         ui = {
           icons = {
             package_installed = '✓',
