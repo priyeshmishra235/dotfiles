@@ -116,11 +116,11 @@ return {
     -----------------------------------------------------------
     local map = vim.keymap.set
     local opts = { noremap = true, silent = true }
-    map("n", "<leader>tt", "<cmd>ToggleTerm<CR>", { desc = "Toggle default terminal" })
+    map("n", "<leader>tc", "<cmd>ToggleTerm<CR>", { desc = "Toggle default terminal" })
     map("n", "<leader>tf", _FLOAT_TERM, { desc = "Toggle floating terminal" })
     map("n", "<leader>tv", "<cmd>ToggleTerm direction=vertical<CR>", { desc = "Toggle vertical terminal" })
     map("n", "<leader>th", "<cmd>ToggleTerm direction=horizontal<CR>", { desc = "Toggle horizontal terminal" })
-    map("n", "<leader>tc", _PROJECT_TERM, { desc = "Terminal (cwd of file)" })
+    map("n", "<leader>tt", _PROJECT_TERM, { desc = "Terminal (cwd of file)" })
     map("n", "<leader>tr", _PROJECT_ROOT_TERM, { desc = "Terminal at project root" })
   end,
 }

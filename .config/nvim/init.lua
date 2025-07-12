@@ -79,7 +79,7 @@ require('lazy').setup {
   -- │ DAP │
   -- ╰─────╯
   require 'plugins.debugger.nvim-dap',
-  require 'plugins.debugger.debugPrint',
+  -- require 'plugins.debugger.debugPrint',
   require 'plugins.debugger.nvim-dap-virtual-text',
   require 'plugins.debugger.nvim-dapui',
   -- require 'plugins.debugger.nvim-dap-utils',

@@ -18,7 +18,8 @@ vim.o.shiftwidth = 2
 vim.o.tabstop = 2
 vim.o.softtabstop = 2
 vim.o.expandtab = true
-vim.opt.formatoptions:remove { 'c', 'r', 'o' }
+-- Disable auto commenting on newline (c, r, o)
+vim.opt.formatoptions:remove("cro")
 vim.opt.iskeyword:append '-'
 
 -- Clipboard & File Encoding

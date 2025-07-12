@@ -11,11 +11,11 @@ return {
     -- DAP Keymaps
     local keymap = vim.keymap.set
     keymap('n', '<F5>', dap.continue)
-    keymap('n', '<F10>', dap.step_over)
-    keymap('n', '<F11>', dap.step_into)
-    keymap('n', '<F12>', dap.step_out)
+    keymap('n', '<F6>', dap.step_over)
+    keymap('n', '<F7>', dap.step_into)
+    keymap('n', '<F8>', dap.step_out)
     keymap('n', '<Leader>b', dap.toggle_breakpoint)
-    keymap('n', '<Leader>B', function() dap.set_breakpoint() end)
+    -- keymap('n', '<Leader>B', function() dap.set_breakpoint() end)
     keymap('n', '<Leader>lp', function()
       dap.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))
     end)
