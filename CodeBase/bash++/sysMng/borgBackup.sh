@@ -24,6 +24,7 @@ borg create \
   --exclude "$USER_HOME/Clone" \
   --exclude "$USER_HOME/Obsidian" \
   --exclude "$USER_HOME/borg-home-KEY-Passphrase" \
+  --exclude "$USER_HOME/acer-predator" \
   --exclude "$USER_HOME/Desktop" \
   --exclude "$USER_HOME/Documents" \
   --exclude "$USER_HOME/Downloads" \
@@ -31,6 +32,8 @@ borg create \
   --exclude "$USER_HOME/home" \
   --exclude "$USER_HOME/HyDE" \
   --exclude "$USER_HOME/Music" \
+  --exclude "$USER_HOME/snapd" \
+  --exclude "$USER_HOME/snap" \
   --exclude "$USER_HOME/Pictures" \
   --exclude "$USER_HOME/Public" \
   --exclude "$USER_HOME/Templates" \
@@ -39,6 +42,8 @@ borg create \
   --exclude "$USER_HOME/.cache" \
   --exclude "$USER_HOME/.icons" \
   --exclude "$USER_HOME/.npm" \
+  --exclude "$USER_HOME/.vscode" \
+  --exclude "$USER_HOME/.var" \
   --exclude "$USER_HOME/.parallel"
 
 # === Prune old backups ===

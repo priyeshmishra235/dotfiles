@@ -47,9 +47,9 @@ return {
       watch_for_changes = true,
       -- See :help oil-actions for a list of all available actions
       vim.keymap.set('n', '<leader>e', require('oil').open, { desc = 'Open Oil in new buffer' }),
-      vim.keymap.set('n', '<leader>f', function()
-        require('oil').open_float()
-      end, { desc = 'Open Oil in floating window' }),
+      -- vim.keymap.set('n', '<leader>f', function()
+      --   require('oil').open_float()
+      -- end, { desc = 'Open Oil in floating window' }),
       keymaps = {
         ['g?'] = { 'actions.show_help', mode = 'n' },
         ['<CR>'] = 'actions.select',

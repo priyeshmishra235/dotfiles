@@ -1,19 +1,19 @@
 return {
   'hrsh7th/nvim-cmp',
   enabled = true,
-  event = { 'InsertEnter', 'CmdlineEnter' },
+  event = { 'InsertEnter' },
   dependencies = {
-    'hrsh7th/cmp-nvim-lsp',
-    'hrsh7th/cmp-cmdline',
-    'hrsh7th/cmp-buffer',
-    'saadparwaiz1/cmp_luasnip',
-    'ray-x/cmp-treesitter',
-    'hrsh7th/cmp-nvim-lsp-signature-help',
-    'hrsh7th/cmp-nvim-lua',
-    'hrsh7th/cmp-path',
-    'octaltree/cmp-look',
-    -- 'chrisgrieser/cmp_yanky',
+    { 'hrsh7th/cmp-nvim-lsp',                event = 'InsertEnter' },
+    { 'hrsh7th/cmp-nvim-lua',                event = 'InsertEnter' },
+    { 'hrsh7th/cmp-nvim-lsp-signature-help', event = 'InsertEnter' },
+    { 'hrsh7th/cmp-buffer',                  event = 'InsertEnter' },
+    { 'ray-x/cmp-treesitter',                event = 'InsertEnter' },
+    { 'hrsh7th/cmp-path',                    event = { 'InsertEnter', 'CmdlineEnter' } },
+    { 'saadparwaiz1/cmp_luasnip',            event = 'InsertEnter' },
+    { 'octaltree/cmp-look',                  event = 'InsertEnter' },
+    -- { 'chrisgrieser/cmp_yanky',            event = 'InsertEnter' },
   },
+  --
   config = function()
     -- ╭───────────────╮
     -- │ LOAD SNIPPETS │
@@ -105,7 +105,7 @@ return {
         ['<C-j>'] = cmp.mapping.select_next_item { behavior = cmp.SelectBehavior.Insert },
         ['<C-b>'] = cmp.mapping.scroll_docs(-4),
         ['<C-f>'] = cmp.mapping.scroll_docs(4),
-        ['<C-Space>'] = cmp.mapping.complete(),
+        -- ['<C-Space>'] = cmp.mapping.complete(),
         ['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
         ['<C-e>'] = cmp.mapping {
           i = cmp.mapping.abort(),
@@ -220,71 +220,5 @@ return {
         ghost_text = true,
       },
     }
-
-    -- ╭─────────────────────────╮
-    -- │ CMP CMDLINE FOR / AND ? │
-    -- ╰─────────────────────────╯
-    cmp.setup.cmdline({ '/', '?' }, {
-      mapping = cmp.mapping.preset.cmdline(),
-      sources = {
-        { name = 'buffer' },
-      },
-    })
-
-    -- ╭───────────────────╮
-    -- │ CMP CMDLINE FOR : │
-    -- ╰───────────────────╯
-    cmp.setup.cmdline(':', {
-      mapping = cmp.mapping.preset.cmdline(),
-      -- sources = cmp.config.sources({
-      --     { name = 'path' },
-      -- }, {
-      --     { name = 'cmdline' },
-      -- }),
-      -- Same as above
-      sources = cmp.config.sources {
-        { name = 'path',    group_index = 1 },
-        { name = 'cmdline', group_index = 2 },
-      },
-      matching = { disallow_symbol_nonprefix_matching = false },
-    })
-
-    -- ╭───────────────────╮
-    -- │ ULTIMATE-AUTOPAIR │
-    -- ╰───────────────────╯
-    -- local Kind = cmp.lsp.CompletionItemKind
-    -- cmp.event:on('confirm_done', function(evt)
-    --     if vim.tbl_contains({ Kind.Function, Kind.Method }, evt.entry:get_completion_item().kind) then
-    --         vim.api.nvim_feedkeys('()' .. vim.api.nvim_replace_termcodes('<Left>', true, true, true), 'n', false)
-    --     end
-    -- end)
-
-    -- ╭────────────────╮
-    -- │ NVIM-AUTOPAIRS │
-    -- ╰────────────────╯
-    -- local cmp_autopairs = require 'nvim-autopairs.completion.cmp'
-    -- local ts_utils = require 'nvim-treesitter.ts_utils'
-    --
-    -- local ts_node_func_parens_disabled = {
-    --   -- ecma
-    --   named_imports = true,
-    --   -- rust
-    --   use_declaration = true,
-    -- }
-    --
-    -- local default_handler = cmp_autopairs.filetypes['*']['('].handler
-    -- cmp_autopairs.filetypes['*']['('].handler = function(char, item, bufnr, rules, commit_character)
-    --   local node_type = ts_utils.get_node_at_cursor():type()
-    --   if ts_node_func_parens_disabled[node_type] then
-    --     if item.data then
-    --       item.data.funcParensDisabled = true
-    --     else
-    --       char = ''
-    --     end
-    --   end
-    --   default_handler(char, item, bufnr, rules, commit_character)
-    -- end
-    --
-    -- cmp.event:on('confirm_done', cmp_autopairs.on_confirm_done())
   end,
 }

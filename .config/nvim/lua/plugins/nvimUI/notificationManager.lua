@@ -17,7 +17,7 @@ return {
         TRACE = '✎',
         WARN = '',
       },
-      max_width = 50, -- Maximum width of the notification window
+      max_width = 50,  -- Maximum width of the notification window
       max_height = 20, -- Maximum height of the notification window      level =
       2,
       minimum_width = 50,

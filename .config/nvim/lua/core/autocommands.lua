@@ -47,7 +47,6 @@ vim.api.nvim_create_autocmd('FileType', {
     vim.keymap.set('n', 'q', '<cmd>tabc<cr>', { silent = true, buffer = true })
   end,
 })
-
 -- ╭─────────────────────────────────────────────────────────╮
 -- │                 OPEN HELP IN A NEW TAB                  │
 -- ╰─────────────────────────────────────────────────────────╯

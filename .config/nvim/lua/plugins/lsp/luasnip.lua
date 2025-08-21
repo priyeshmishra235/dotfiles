@@ -26,14 +26,14 @@ return {
     -- Luasnip keys
     vim.keymap.set({ 'i', 's' }, '<C-i>', function()
       ls.expand()
-    end)
+    end) --expand snipped under cursor
 
     vim.keymap.set({ 'i', 's' }, '<C-l>', function()
       ls.jump(1)
-    end)
+    end) --jump to next placeholder
 
     vim.keymap.set({ 'i', 's' }, '<C-h>', function()
-      ls.jump(-1)
+      ls.jump(-1) --jump to previous placeholder
     end)
 
     -- Luasnip Choice Nodes
@@ -49,7 +49,7 @@ return {
       end
     end, { silent = true })
 
-    -- Disable diagnostics while expandingon select mode
+    -- Disable diagnostics while expanding on select mode
     local augroup = vim.api.nvim_create_augroup('luasnip-expand', { clear = true })
 
     vim.api.nvim_create_autocmd('ModeChanged', {
@@ -64,12 +64,10 @@ return {
 
     vim.api.nvim_create_autocmd('ModeChanged', {
       group = augroup,
-      -- pattern = '[is]:n',
-      -- pattern = '*:n',
-      pattern = 'n',
+      pattern = { 's:n', 'i:n' },
       callback = function()
         if ls.in_snippet() then
-          return vim.diagnostic.enable(true)
+          vim.diagnostic.enable(true)
         end
       end,
     })

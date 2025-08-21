@@ -14,6 +14,7 @@ local opts = { noremap = true, silent = true }
 map('i', 'kj', '<Esc>', opts)
 map('i', 'KJ', '<Esc>', opts)
 map('i', ';;', '<Esc>', opts)
+map('i', 'jk', '<Esc>', opts)
 
 -- save file
 map('n', '<C-s>', '<cmd> w <CR>', opts)
@@ -125,6 +126,15 @@ map('n', 'dd', function()
   return 'dd'
 end, { expr = true })
 
+-- Tab / Shift‑Tab cycling in command‑line mode ─────────────────
+vim.keymap.set("c", "<Tab>", function()
+  return vim.fn.wildmenumode() == 1 and "<C-n>" or "<Tab>"
+end, opts)
+vim.keymap.set("c", "<S-Tab>", function()
+  return vim.fn.wildmenumode() == 1 and "<C-p>" or "<S-Tab>"
+end, opts)
+
+vim.keymap.set('n', '<Esc><Esc>', '<cmd>nohlsearch<CR>', { desc = 'Clear search highlight' })
 -- Diagnostic keymaps
 -- vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous diagnostic message' })
 -- vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next diagnostic message' })

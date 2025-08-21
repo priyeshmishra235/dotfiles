@@ -41,7 +41,7 @@ require('lazy').setup {
   -- ╭─────────────────────────────╮
   -- │ fileManager and can't think │
   -- ╰─────────────────────────────╯
-  require 'plugins.fileAndUndo.harpoon',
+  -- require 'plugins.fileAndUndo.harpoon',
   require 'plugins.fileAndUndo.oil',
   -- require 'plugins.fileAndUndo.undoTree',
   -- ╭───────────╮
@@ -67,6 +67,7 @@ require('lazy').setup {
   require 'plugins.lsp.none-ls',
   require 'plugins.lsp.lspConfig',
   require 'plugins.lsp.nvim-cmp',
+  require 'plugins.lsp.cmp-cmdline',
   require 'plugins.lsp.luasnip',
   require 'plugins.lsp.mason',
   require 'plugins.lsp.trouble',
@@ -89,7 +90,7 @@ require('lazy').setup {
   -- ╰───────────────────────╯
   -- require 'plugins.misc.autosave',
   require 'plugins.misc.pendulum',
-  require 'plugins.misc.misc',
+  -- require 'plugins.misc.misc',
   -- require 'plugins.misc.cheatsheet',
   -- require 'plugins.misc.imageViewer',
   -- require 'plugins.misc.speedTyper',

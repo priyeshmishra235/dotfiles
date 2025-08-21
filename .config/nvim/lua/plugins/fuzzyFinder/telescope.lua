@@ -150,6 +150,16 @@ return {
 
     require('telescope').setup {
       defaults = {
+        vimgrep_arguments = {
+          'rg',
+          '--color=never',
+          '--no-heading',
+          '--with-filename',
+          '--line-number',
+          '--column',
+          '--smart-case',
+        },
+        find_command = { "fd", "--type", "f", "--strip-cwd-prefix", "--hidden" },
         prompt_prefix = '   ',
         selection_caret = '▎ ',
         multi_icon = ' │ ',
@@ -173,10 +183,6 @@ return {
         -- preview = {
         --     hide_on_startup = true,
         -- },
-        file_ignore_patterns = {
-          'node_modules', "%.pdf$", "%.jpg$", "%.jpeg$", "%.png$", "%.ppt$"
-        , "%.pptx", "%.webp$", "%.svg$", "%.zip", "%.tar.gz", "%.rar", "%.tar"
-        },
       },
       pickers = {
         buffers = {
@@ -191,10 +197,36 @@ return {
           initial_mode = 'normal',
         },
         find_files = {
+          cwd = vim.loop.os_homedir(),
+          hidden = true,
+          no_ignore = true,
+          file_ignore_patterns = {
+            '%.jsonc$', '%.json$', 'Pictures/', 'Public/', 'obsidian/', 'snap/',
+            '%.git/', '%.cache/', '%.npm/', '%.vscode/', '%.parallel/', '%.dotnet/',
+            '%.cargo/', 'node_modules/', 'Clone/', 'Desktop/', 'Documents/',
+            'Downloads/', '.local/', 'Hyde/', 'go/', 'snapd/',
+            '%.config/BraveSoftware/', '%.config/Code/', '%.config/Code %- OSS/',
+            '%.config/Electron/', '%.config/Kitware/', '%.config/Kvantum/',
+            '%.config/blender/', '%.config/borg/', '%.config/btop/',
+            '%.config/cfg_backups/', '%.config/cpupower_gui/', '%.config/crossnote/',
+            '%.config/dconf/', '%.config/dunst/', '%.config/fastfetch/',
+            '%.config/github%-copilot/', '%.config/go/', '%.config/gtk%-3%.0/',
+            '%.config/gtk%-4%.0/', '%.config/htop/', '%.config/kde%.org/',
+            '%.config/kitty/', '%.config/menus/', '%.config/mpv/', '%.config/neofetch/',
+            '%.config/nushell/', '%.config/nwg%-displays/',
+            '%.config/nwg%-look/', '%.config/obsidian/', '%.config/onlyoffice/',
+            '%.config/parallel/', '%.config/pulse/', '%.config/qt5ct/',
+            '%.config/qt6ct/', '%.config/ripgrep%-all/', '%.config/rofi/',
+            '%.config/session/', '%.config/starship/', '%.config/systemd/',
+            '%.config/wezterm/', '%.config/xsettingsd/', '%.config/yay/',
+            '%.pdf$', '%.jpg$', '%.jpeg$', '%.png$', '%.webp$', '%.svg$', '%.ppt$',
+            '%.pptx$', '%.zip$', '%.tar%.gz$', '%.tar$', '%.rar$',
+          },
+          prompt_title = '  Search $HOME',
           -- theme = 'ivy', -- 'ivy', 'dropdown', 'cursor'
           -- layout_strategy = 'vertical',
           -- layout_config = { height = 0.9 },
-          previewer = true,
+          previewer = false,
           path_display = { 'smart' },
           layout_config = {
             prompt_position = 'top',
@@ -202,7 +234,6 @@ return {
             -- width = 0.8,
           },
           sorting_strategy = 'ascending',
-          find_files = { hidden = true, },
         },
         help_tags = {
           -- theme = 'ivy',

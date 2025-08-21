@@ -20,18 +20,18 @@ return {
         require('blink.cmp').get_lsp_capabilities())
 
       -- Diagnostic Keymaps
-      vim.keymap.set('n', '<space>d', vim.diagnostic.open_float,
-        { noremap = true, silent = true, desc = 'Open Diagnostic Window' })
-      vim.keymap.set('n', '<space><left>', function() vim.diagnostic.jump { count = -vim.v.count1 } end,
-        { noremap = true, silent = true, desc = 'Previous Diagnostic' })
-      vim.keymap.set('n', '<space><right>', function() vim.diagnostic.jump { count = vim.v.count1 } end,
-        { noremap = true, silent = true, desc = 'Next Diagnostic' })
-      vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist,
-        { noremap = true, silent = true, desc = 'Send Diagnostic to Locallist' })
-      vim.keymap.set('n', 'gK', function()
-        local new_config = not vim.diagnostic.config().virtual_lines
-        vim.diagnostic.config { virtual_lines = new_config }
-      end, { noremap = true, silent = true, desc = 'Toggle diagnostic virtual_lines' })
+      -- vim.keymap.set('n', '<space>d', vim.diagnostic.open_float,
+      --   { noremap = true, silent = true, desc = 'Open Diagnostic Window' })
+      -- vim.keymap.set('n', '<space><left>', function() vim.diagnostic.jump { count = -vim.v.count1 } end,
+      --   { noremap = true, silent = true, desc = 'Previous Diagnostic' })
+      -- vim.keymap.set('n', '<space><right>', function() vim.diagnostic.jump { count = vim.v.count1 } end,
+      --   { noremap = true, silent = true, desc = 'Next Diagnostic' })
+      -- vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist,
+      --   { noremap = true, silent = true, desc = 'Send Diagnostic to Locallist' })
+      -- vim.keymap.set('n', 'gK', function()
+      --   local new_config = not vim.diagnostic.config().virtual_lines
+      --   vim.diagnostic.config { virtual_lines = new_config }
+      -- end, { noremap = true, silent = true, desc = 'Toggle diagnostic virtual_lines' })
 
       -- lsp attach keymaps
       vim.api.nvim_create_autocmd('LspAttach', {
@@ -55,9 +55,9 @@ return {
           map('grk', function() vim.lsp.buf.signature_help { border = 'single' } end, 'Signature Help')
           map('grs', vim.lsp.buf.document_symbol, 'Document Symbols')
           map('grt', vim.lsp.buf.type_definition, 'Type Definition')
-          map('grwa', vim.lsp.buf.add_workspace_folder, 'Add Workspace Folder')
-          map('grwr', vim.lsp.buf.remove_workspace_folder, 'Remove Workspace Folder')
-          map('grwl', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, 'List Workspace Folders')
+          -- map('grwa', vim.lsp.buf.add_workspace_folder, 'Add Workspace Folder')
+          -- map('grwr', vim.lsp.buf.remove_workspace_folder, 'Remove Workspace Folder')
+          -- map('grwl', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, 'List Workspace Folders')
 
           -- show inlay hints
           local client = vim.lsp.get_client_by_id(ev.data.client_id)
@@ -74,12 +74,12 @@ return {
       })
 
       -- Toggle Inlay Hints
-      vim.keymap.set('n', '<Space>ih', function()
-        if vim.lsp.inlay_hint and vim.lsp.inlay_hint.enable and vim.lsp.inlay_hint.is_enabled then
-          local current = vim.lsp.inlay_hint.is_enabled()
-          vim.lsp.inlay_hint.enable(not current)
-        end
-      end, { desc = 'Toggle Inlay Hints' })
+      -- vim.keymap.set('n', '<Space>ih', function()
+      --   if vim.lsp.inlay_hint and vim.lsp.inlay_hint.enable and vim.lsp.inlay_hint.is_enabled then
+      --     local current = vim.lsp.inlay_hint.is_enabled()
+      --     vim.lsp.inlay_hint.enable(not current)
+      --   end
+      -- end, { desc = 'Toggle Inlay Hints' })
 
       local signs = {
         [vim.diagnostic.severity.ERROR] = ' ',
@@ -109,9 +109,9 @@ return {
       })
 
       lspconfig.clangd.setup({
-        keys = {
-          { "<leader>ch", "<cmd>ClangdSwitchSourceHeader<cr>", desc = "Switch Source/Header (C/C++)" },
-        },
+        -- keys = {
+        --   { "<leader>ch", "<cmd>ClangdSwitchSourceHeader<cr>", desc = "Switch Source/Header (C/C++)" },
+        -- },
         root_dir = lspconfig.util.root_pattern(
           "compile_flags.txt", "compile_commands.json", "CMakeLists.txt",
           "Makefile", "configure.ac", "configure.in", "config.h.in",
@@ -148,9 +148,8 @@ return {
         root_dir = require("lspconfig.util").root_pattern("*.wgsl", ".git"),
         settings = {},
       })
-      -- Lua
-      local lspconfig = require("lspconfig")
 
+      -- Lua
       -- 🔹 Setup correct Lua runtime paths
       local runtime_path = vim.split(package.path, ";")
       table.insert(runtime_path, "lua/?.lua")
