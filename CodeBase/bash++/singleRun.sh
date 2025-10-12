@@ -17,9 +17,9 @@ main_files=()
 for f in *.cpp; do
   [[ -f "$f" ]] || continue
   if $USE_RG; then
-    head -n 100 "$f" | rg -q '^\s*(int|auto)\s+main\s*\(' && main_files+=("$f")
+    head -n 200 "$f" | rg -q '^\s*(int|auto)\s+main\s*\(' && main_files+=("$f")
   else
-    head -n 100 "$f" | grep -qE '^\s*(int|auto)\s+main\s*\(' && main_files+=("$f")
+    head -n 200 "$f" | grep -qE '^\s*(int|auto)\s+main\s*\(' && main_files+=("$f")
   fi
 done
 

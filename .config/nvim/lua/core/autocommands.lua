@@ -110,3 +110,12 @@ vim.api.nvim_create_autocmd('TextYankPost', {
     }
   end,
 })
+-- ╭─────────────────────────────────────────────────────────╮
+-- │                      Lua auto open                      │
+-- ╰─────────────────────────────────────────────────────────╯
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "lua",
+  callback = function()
+    vim.lsp.enable('lua_ls')
+  end,
+})

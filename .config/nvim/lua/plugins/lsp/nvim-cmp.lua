@@ -73,9 +73,17 @@ return {
     -- │ CMP SETUP │
     -- ╰───────────╯
     cmp.setup {
+      enabled = function()
+        local ft = vim.bo.filetype
+        -- Disable completions in text files
+        if ft == "text" or ft == "txt" then
+          return false
+        end
+        return true
+      end,
       snippet = {
         expand = function(args)
-          require('luasnip').lsp_expand(args.body)
+          luasnip.lsp_expand(args.body)
         end,
       },
       window = {
@@ -174,7 +182,7 @@ return {
         fields = { 'abbr', 'kind', 'menu' },
         format = function(entry, vim_item)
           -- Kind icons
-          -- This concatonates the icons with the name of the item kind
+          -- This concatenates the icons with the name of the item kind
           vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind)
           -- Trim text function
           function trim(text)

@@ -29,9 +29,8 @@ return {
       },
       timeout = 5000,
       top_down = true,
-    } -- Setup before using
+    }
 
-    -- Telescope Notify Extension (if installed)
     if pcall(require, 'telescope') then
       require('telescope').load_extension 'notify'
     end

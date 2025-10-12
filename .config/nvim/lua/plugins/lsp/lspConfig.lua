@@ -44,6 +44,7 @@ return {
             vim.keymap.set(mode or 'n', lhs, rhs, { buffer = ev.buf, desc = desc })
           end
 
+
           map('K', function() vim.lsp.buf.hover { border = 'single' } end, 'Hover')
           map('gra', vim.lsp.buf.code_action, 'Code Action', { 'n', 'v' })
           map('grn', vim.lsp.buf.rename, 'Rename')
@@ -55,6 +56,10 @@ return {
           map('grk', function() vim.lsp.buf.signature_help { border = 'single' } end, 'Signature Help')
           map('grs', vim.lsp.buf.document_symbol, 'Document Symbols')
           map('grt', vim.lsp.buf.type_definition, 'Type Definition')
+          map('<leader>grr', function()
+            require("telescope").extensions.refactoring.refactors()
+          end, 'Refactor code', 'v')
+          -- map('<leader>grr', vim.lsp.buf.code_action, 'Refactor Code', 'v')
           -- map('grwa', vim.lsp.buf.add_workspace_folder, 'Add Workspace Folder')
           -- map('grwr', vim.lsp.buf.remove_workspace_folder, 'Remove Workspace Folder')
           -- map('grwl', function() print(vim.inspect(vim.lsp.buf.list_workspace_folders())) end, 'List Workspace Folders')
@@ -107,98 +112,6 @@ return {
           source = 'always',
         },
       })
-
-      lspconfig.clangd.setup({
-        -- keys = {
-        --   { "<leader>ch", "<cmd>ClangdSwitchSourceHeader<cr>", desc = "Switch Source/Header (C/C++)" },
-        -- },
-        root_dir = lspconfig.util.root_pattern(
-          "compile_flags.txt", "compile_commands.json", "CMakeLists.txt",
-          "Makefile", "configure.ac", "configure.in", "config.h.in",
-          "meson.build", "meson_options.txt", "build.ninja"
-        ),
-        capabilities = {
-          offsetEncoding = { "utf-16" },
-          textDocument = {
-            completion = {
-              editsNearCursor = true,
-            },
-          },
-        },
-        cmd = {
-          "clangd", "--background-index", "--clang-tidy", "--completion-style=detailed",
-          "--function-arg-placeholders=true", "--inlay-hints=true",
-        },
-        init_options = {
-          usePlaceholders = true,
-          completeUnimported = true,
-          clangdFileStatus = true,
-        },
-        filetypes = { "c", "cpp", "objc", "objcpp", "cuda", "proto" },
-        single_file_support = true,
-      })
-
-      require('lspconfig').glsl_analyzer.setup({
-        filetypes = { "glsl", "vert", "frag", "comp", "geom" },
-        root_dir = require("lspconfig.util").root_pattern(".git", "*.glsl", "*.vert", "*.frag"),
-      })
-      require('lspconfig').wgsl_analyzer.setup({
-        cmd = { "/home/priyeshmishra/.cargo/bin/wgsl-analyzer" },
-        filetypes = { "wgsl" },
-        root_dir = require("lspconfig.util").root_pattern("*.wgsl", ".git"),
-        settings = {},
-      })
-
-      -- Lua
-      -- 🔹 Setup correct Lua runtime paths
-      local runtime_path = vim.split(package.path, ";")
-      table.insert(runtime_path, "lua/?.lua")
-      table.insert(runtime_path, "lua/?/init.lua")
-
-      -- 🔹 Setup the LSP
-      lspconfig.lua_ls.setup {
-        on_init = function(client)
-          local path = client.workspace_folders[1].name
-          if vim.loop.fs_stat(path .. "/.luarc.json") or vim.loop.fs_stat(path .. "/.luarc.jsonc") then
-            return
-          end
-          client.config.settings.Lua = vim.tbl_deep_extend("force", client.config.settings.Lua, {
-            runtime = {
-              version = "LuaJIT",
-              path = runtime_path,
-            },
-            workspace = {
-              checkThirdParty = false,
-              library = {
-                vim.env.VIMRUNTIME,
-                "${3rd}/luv/library",
-                "${3rd}/busted/library",
-              },
-            },
-          })
-          client.notify("workspace/didChangeConfiguration", { settings = client.config.settings })
-        end,
-        settings = {
-          Lua = {
-            runtime = {
-              version = "LuaJIT",
-              path = runtime_path,
-            },
-            diagnostics = {
-              globals = { "vim" },
-            },
-            workspace = {
-              checkThirdParty = false,
-              library = {
-                vim.env.VIMRUNTIME,
-              },
-            },
-            telemetry = {
-              enable = false,
-            },
-          },
-        },
-      }
     end,
   },
 }

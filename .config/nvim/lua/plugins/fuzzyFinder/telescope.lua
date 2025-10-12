@@ -20,12 +20,12 @@ return {
       desc =
       'Find Diagnostics'
     },
-    {
-      '<leader>fe',
-      '<cmd>Telescope file_browser<cr>',
-      desc =
-      'File Browser'
-    },
+    -- {
+    --   '<leader>fe',
+    --   '<cmd>Telescope file_browser<cr>',
+    --   desc =
+    --   'File Browser'
+    -- },
     {
       '<leader>ff',
       '<cmd>Telescope find_files<cr>',
@@ -44,108 +44,108 @@ return {
       desc =
       'Find Help'
     },
-    {
-      '<leader>fi',
-      '<cmd>Telescope import<cr>',
-      desc =
-      'Find Imports'
-    },
-    {
-      '<leader>fj',
-      '<cmd>Telescope emoji<cr>',
-      desc =
-      'Find emoji'
-    },
+    -- {
+    --   '<leader>fi',
+    --   '<cmd>Telescope import<cr>',
+    --   desc =
+    --   'Find Imports'
+    -- },
+    -- {
+    --   '<leader>fj',
+    --   '<cmd>Telescope emoji<cr>',
+    --   desc =
+    --   'Find emoji'
+    -- },
     {
       '<leader>fk',
       '<cmd>Telescope keymaps<cr>',
       desc =
       'Find Keymaps'
     },
-    {
-      '<leader>fl',
-      '<cmd>Telescope highlights<cr>',
-      desc =
-      'Find Highlights'
-    },
-    {
-      '<leader>fm',
-      '<cmd>Telescope heading<cr>',
-      desc =
-      'Find Heading'
-    },
+    -- {
+    --   '<leader>fl',
+    --   '<cmd>Telescope highlights<cr>',
+    --   desc =
+    --   'Find Highlights'
+    -- },
+    -- {
+    --   '<leader>fm',
+    --   '<cmd>Telescope heading<cr>',
+    --   desc =
+    --   'Find Heading'
+    -- },
     {
       '<leader>fo',
       '<cmd>Telescope oldfiles<cr>',
       desc =
       'Recently opened files'
     },
-    {
-      '<leader>fp',
-      '<cmd>Telescope spell_suggest<cr>',
-      desc =
-      'Find Spell Suggest'
-    },
+    -- {
+    --   '<leader>fp',
+    --   '<cmd>Telescope spell_suggest<cr>',
+    --   desc =
+    --   'Find Spell Suggest'
+    -- },
     {
       '<leader>fq',
       '<cmd>Telescope quickfix<cr>',
       desc =
       'Find Quickix'
     },
-    {
-      '<leader>fr',
-      '<cmd>Telescope grep_string<cr>',
-      desc =
-      'Find Word Under Cursor'
-    },
-    {
-      '<leader>fs',
-      '<cmd>Telescope symbols<cr>',
-      desc =
-      'Find Symbols'
-    },
-    {
-      '<leader>ft',
-      '<cmd>Telescope git_files<cr>',
-      desc =
-      'Find Git Files'
-    },
-    {
-      '<leader>fu',
-      '<cmd>Telescope undo<cr>',
-      desc =
-      'Find Undo'
-    },
-    {
-      '<leader>fy',
-      '<cmd>Telescope yank_history<cr>',
-      mode = {
-        'n', 'x' },
-      desc = 'Find yanks'
-    },
-    {
-      '<leader>fz',
-      '<cmd>Telescope zoxide list<cr>',
-      desc =
-      'Find Directory'
-    },
+    -- {
+    --   '<leader>fr',
+    --   '<cmd>Telescope grep_string<cr>',
+    --   desc =
+    --   'Find Word Under Cursor'
+    -- },
+    -- {
+    --   '<leader>fs',
+    --   '<cmd>Telescope symbols<cr>',
+    --   desc =
+    --   'Find Symbols'
+    -- },
+    -- {
+    --   '<leader>ft',
+    --   '<cmd>Telescope git_files<cr>',
+    --   desc =
+    --   'Find Git Files'
+    -- },
+    -- {
+    --   '<leader>fu',
+    --   '<cmd>Telescope undo<cr>',
+    --   desc =
+    --   'Find Undo'
+    -- },
+    -- {
+    --   '<leader>fy',
+    --   '<cmd>Telescope yank_history<cr>',
+    --   mode = {
+    --     'n', 'x' },
+    --   desc = 'Find yanks'
+    -- },
+    -- {
+    --   '<leader>fz',
+    --   '<cmd>Telescope zoxide list<cr>',
+    --   desc =
+    --   'Find Directory'
+    -- },
   },
   dependencies = {
     'nvim-lua/plenary.nvim',
-    'aaronhallaert/advanced-git-search.nvim',
-    'AckslD/nvim-neoclip.lua',
-    'nvim-telescope/telescope-file-browser.nvim',
-    'nvim-telescope/telescope-symbols.nvim',
-    'xiyaowong/telescope-emoji.nvim',
-    'debugloop/telescope-undo.nvim',
-    'jvgrootveld/telescope-zoxide',
-    'piersolenski/telescope-import.nvim',
-    'crispgm/telescope-heading.nvim',
+    -- 'aaronhallaert/advanced-git-search.nvim',
+    -- 'AckslD/nvim-neoclip.lua',
+    -- 'nvim-telescope/telescope-file-browser.nvim',
+    -- 'nvim-telescope/telescope-symbols.nvim',
+    -- 'xiyaowong/telescope-emoji.nvim',
+    -- 'debugloop/telescope-undo.nvim',
+    -- 'jvgrootveld/telescope-zoxide',
+    -- 'piersolenski/telescope-import.nvim',
+    -- 'crispgm/telescope-heading.nvim',
   },
   config = function()
     local actions = require 'telescope.actions'
     local action_layout = require 'telescope.actions.layout'
-    local fb_actions = require('telescope').extensions.file_browser.actions
+    -- local fb_actions = require('telescope').extensions.file_browser.actions
     local open_with_trouble = require('trouble.sources.telescope').open
 
     require('telescope').setup {
@@ -171,6 +171,7 @@ return {
             ['<M-p>'] = action_layout.toggle_preview,
             ['<S-down>'] = actions.preview_scrolling_down,
             ['<S-up>'] = actions.preview_scrolling_up,
+            ["dd"] = actions.delete_buffer,
           },
           n = {
             ['<c-t>'] = open_with_trouble,
@@ -178,6 +179,7 @@ return {
             ['<M-p>'] = action_layout.toggle_preview,
             ['<S-down>'] = actions.preview_scrolling_down,
             ['<S-up>'] = actions.preview_scrolling_up,
+            ["dd"] = actions.delete_buffer,
           },
         },
         -- preview = {
@@ -245,16 +247,16 @@ return {
             -- width = 0.7,
           },
         },
-        symbols = {
-          theme = 'dropdown',
-          previewer = true,
-          path_display = { 'smart' },
-          layout_config = {
-            prompt_position = 'top',
-            preview_width = 0.5,
-            -- width = 0.7,
-          },
-        },
+        -- symbols = {
+        --   theme = 'dropdown',
+        --   previewer = true,
+        --   path_display = { 'smart' },
+        --   layout_config = {
+        --     prompt_position = 'top',
+        --     preview_width = 0.5,
+        --     -- width = 0.7,
+        --   },
+        -- },
         registers = {
           -- theme = 'ivy',
           path_display = { 'smart' },
@@ -286,51 +288,51 @@ return {
           },
         },
       },
-      extensions = {
-        file_browser = {
-          dir_icon = '',
-          prompt_path = true,
-          grouped = true,
-          theme = 'dropdown',
-          initial_mode = 'normal',
-          previewer = true,
-          mappings = {
-            n = {
-              ['o'] = 'select_default',
-              ['H'] = fb_actions.toggle_hidden,
-              ['h'] = fb_actions.goto_parent_dir,
-              ['l'] = 'select_default',
-            },
-          },
-        },
-        undo = {
-          initial_mode = 'normal',
-          use_delta = true,
-          side_by_side = true,
-          layout_strategy = 'vertical',
-          layout_config = {
-            preview_height = 0.8,
-          },
-        },
-        heading = {
-          treesitter = true,
-        },
-        advanced_git_search = {
-          diff_plugin = 'diffview',
-        },
-      },
+      -- extensions = {
+      --   file_browser = {
+      --     dir_icon = '',
+      --     prompt_path = true,
+      --     grouped = true,
+      --     theme = 'dropdown',
+      --     initial_mode = 'normal',
+      --     previewer = true,
+      --     mappings = {
+      --       n = {
+      --         ['o'] = 'select_default',
+      --         ['H'] = fb_actions.toggle_hidden,
+      --         ['h'] = fb_actions.goto_parent_dir,
+      --         ['l'] = 'select_default',
+      --       },
+      --     },
+      --   },
+      -- undo = {
+      --   initial_mode = 'normal',
+      --   use_delta = true,
+      --   side_by_side = true,
+      --   layout_strategy = 'vertical',
+      --   layout_config = {
+      --     preview_height = 0.8,
+      --   },
+      -- },
+      -- heading = {
+      --   treesitter = true,
+      -- },
+      -- advanced_git_search = {
+      --   diff_plugin = 'diffview',
+      -- },
+      -- },
     }
 
     -- Extensions
-    require('telescope').load_extension 'emoji'
-    require('telescope').load_extension 'file_browser'
-    require('telescope').load_extension 'undo'
-    require('telescope').load_extension 'advanced_git_search'
-    require('telescope').load_extension 'zoxide'
-    require('telescope').load_extension 'import'
-    require('telescope').load_extension 'heading'
-    require('telescope').load_extension 'yank_history'
-    require('telescope').load_extension 'neoclip'
+    -- require('telescope').load_extension 'emoji'
+    -- require('telescope').load_extension 'file_browser'
+    -- require('telescope').load_extension 'undo'
+    -- require('telescope').load_extension 'advanced_git_search'
+    -- require('telescope').load_extension 'zoxide'
+    -- require('telescope').load_extension 'import'
+    -- require('telescope').load_extension 'heading'
+    -- require('telescope').load_extension 'yank_history'
+    -- require('telescope').load_extension 'neoclip'
     -- require('telescope').load_extension('noice')
   end,
 }
