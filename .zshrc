@@ -1,6 +1,7 @@
 #  Aliases 
 #
 export PATH="$HOME/.cargo/bin:$PATH"
+export CPLUS_INCLUDE_PATH=$CPLUS_INCLUDE_PATH:/home/priyeshmishra/CodeBase/Includes
 # CMake auto running and building for c++
 alias brr="~/CodeBase/bash++/buildRelease.sh"
 alias bd="~/CodeBase/bash++/buildDebug.sh"
