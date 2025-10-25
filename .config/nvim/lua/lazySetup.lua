@@ -10,7 +10,7 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
     { import = "plugins.codeUI" },
     { import = "plugins.programming" },
-    -- { import = "plugins.debugger" },
+    { import = "plugins.debugger" },
     { import = "plugins.fileAndUndo" },
     { import = "plugins.fuzzyFinder" },
     -- { import = "plugins.games" },

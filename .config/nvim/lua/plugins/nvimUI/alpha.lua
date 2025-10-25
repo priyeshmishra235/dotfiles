@@ -78,6 +78,8 @@ return {
       dashboard.button('f', '  Find File', ':Telescope find_files <CR>'),
       dashboard.button('n', '  New File', ':ene <BAR> startinsert <CR>'),
       dashboard.button('r', '  Recent Files', ':Telescope oldfiles <CR>'),
+      dashboard.button('d', '  Neovim Dotfiles',
+        ':lua require("oil").open("/home/priyeshmishra/dotfiles/.config/nvim/")<CR>'),
       dashboard.button('q', '  Quit NVIM', ':qa<CR>'),
     }
 

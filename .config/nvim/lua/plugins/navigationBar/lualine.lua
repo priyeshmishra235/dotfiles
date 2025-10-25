@@ -23,19 +23,51 @@ return {
     local function spinner()
       return next_frame("spinner", { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" })
     end
-    local function dots()
-      return next_frame("dots", { "⠁", "⠂", "⠄", "⠂" })
+    -- local function bounce()
+    --   return next_frame("bounce", { "⇅", "⇵", "⇳", "⇅" })
+    -- end
+    -- local function wave()
+    --   return next_frame("wave", { "~  ", " ~ ", "  ~", " ~ " })
+    -- end
+    -- local function neon_pulse()
+    --   return next_frame("pulse", { "▰▱▱", "▰▰▱", "▰▰▰", "▰▰▱", "▰▱▱" })
+    -- end
+    -- local function fill_bar()
+    --   return next_frame("fill_bar", {
+    --     "░░░░░░░░░░",
+    --     "▒░░░░░░░░░",
+    --     "▒▒░░░░░░░░",
+    --     "▓▒▒░░░░░░░",
+    --     "▓▓▒▒░░░░░░",
+    --     "▓▓▓▒▒░░░░░",
+    --     "▓▓▓▓▒▒░░░░",
+    --     "▓▓▓▓▓▒▒░░░",
+    --     "▓▓▓▓▓▓▒▒░░",
+    --     "▓▓▓▓▓▓▓▒▒░",
+    --     "▓▓▓▓▓▓▓▓▒▒",
+    --     "▓▓▓▓▓▓▓▓▓▒",
+    --     "▓▓▓▓▓▓▓▓▓▓",
+    --   })
+    -- end
+    local function neural_arc()
+      return next_frame("neural_arc", {
+        "⊹────⊹────⊹",
+        "⊹──⊹──⊹──⊹─",
+        "⊹⊹──⊹──⊹──⊹",
+        "─⊹⊹──⊹──⊹──",
+        "──⊹⊹──⊹──⊹─",
+      })
     end
-    local function bounce()
-      return next_frame("bounce", { "⇅", "⇵", "⇳", "⇅" })
+    local function scan_grid()
+      return next_frame("scan_grid", {
+        "▤▥▦▧▨▩▧▦▥▤",
+        "▥▦▧▨▩▧▦▥▤▤",
+        "▦▧▨▩▧▦▥▤▤▥",
+        "▧▨▩▧▦▥▤▥▦▧",
+        "▨▩▧▦▥▤▥▦▧▨",
+        "▩▧▦▥▤▥▦▧▨▩",
+      })
     end
-    local function wave()
-      return next_frame("wave", { "~  ", " ~ ", "  ~", " ~ " })
-    end
-    local function neon_pulse()
-      return next_frame("pulse", { "▰▱▱", "▰▰▱", "▰▰▰", "▰▰▱", "▰▱▱" })
-    end
-
     require('lualine').setup {
       options = {
         icons_enabled = true,
@@ -75,11 +107,9 @@ return {
         lualine_x = {},
         lualine_y = {},
         lualine_z = {
-          { spinner,    color = { fg = '#ffd700', bg = '#2b1a1a', gui = 'bold' } },
-          { neon_pulse, color = { fg = '#00ffff', bg = '#1a2b2b', gui = 'bold' } },
-          { dots,       color = { fg = '#ff4500', bg = '#2b2b2b', gui = 'bold' } },
-          { wave,       color = { fg = '#adff2f', bg = '#1a2b1a', gui = 'bold' } },
-          { bounce,     color = { fg = '#ff00ff', bg = '#2b1a2b', gui = 'bold' } },
+          { neural_arc, color = { fg = '#ff0080', bg = '#0a0a0a', gui = 'bold' } },
+          { spinner,    color = { fg = '#fffa00', bg = '#0a0a0a', gui = 'bold' } },
+          { scan_grid,  color = { fg = '#00fff7', bg = '#0a0a0a', gui = 'bold' } },
         }
       },
       inactive_sections = {

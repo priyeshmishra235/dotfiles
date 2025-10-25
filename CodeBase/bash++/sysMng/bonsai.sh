@@ -1,10 +1,9 @@
-
 #!/bin/bash
 # this gpt chat will help and give ideas:
 # like : having a timer on side while tree is growing
 # or something else similar
-#
-# cbonsai -h                                                                                                                                          01:32
+
+# cbonsai -h
 # Usage: cbonsai [OPTION]...
 #
 # cbonsai is a beautifully random bonsai tree generator.
