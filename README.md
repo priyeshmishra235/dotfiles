@@ -30,6 +30,7 @@ Then use **GNU Stow** to create symlinks for the dotfiles:
 ```bash
 stow .
 ```
+
 If you want to overwrite existing then use
 
 ```bash
