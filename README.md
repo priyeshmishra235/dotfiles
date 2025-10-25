@@ -21,6 +21,7 @@ This repository contains the configuration (dotfiles) for my personal system set
 Clone the repository into your `$HOME` directory:
 
 ```bash
+mkdir -p dotfiles
 git clone git@github.com/priyeshmishra235/dotfiles.git
 cd dotfiles
 ```
@@ -31,7 +32,7 @@ Then use **GNU Stow** to create symlinks for the dotfiles:
 stow .
 ```
 
-If you want to overwrite existing then use
+If you want to adopt to existing files then use
 
 ```bash
 stow . --adopt
