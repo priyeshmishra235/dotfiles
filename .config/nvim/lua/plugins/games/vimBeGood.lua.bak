@@ -1,0 +1,5 @@
+return {
+  event = 'CmdlineEnter',
+  lazy = true,
+  'ThePrimeagen/vim-be-good',
+}
