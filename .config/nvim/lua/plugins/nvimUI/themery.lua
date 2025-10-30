@@ -18,7 +18,7 @@ return {
   -- { 'sainnhe/everforest' },
   -- { 'rebelot/kanagawa.nvim' },
   -- { 'navarasu/onedark.nvim' },
-  -- { 'projekt0n/github-nvim-theme' },
+  { 'projekt0n/github-nvim-theme' },
   -- { 'Mofiqul/vscode.nvim' },
   -- { 'scottmckendry/cyberdream.nvim' },
   -- { 'Mofiqul/dracula.nvim' },
@@ -27,5 +27,5 @@ return {
   -- { 'bluz71/vim-moonfly-colors', name = 'moonfly' },
   -- { 'tiagovla/tokyodark.nvim' },
   -- { 'Skalyaev/a-nvim-theme',     name = 'aesthetic' },
-  { 'rafamadriz/neon' },
+  -- { 'rafamadriz/neon' },
 }

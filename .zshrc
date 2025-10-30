@@ -1,21 +1,13 @@
 #  Aliases 
 #
 export PATH="$HOME/.cargo/bin:$PATH"
-export CPLUS_INCLUDE_PATH=$CPLUS_INCLUDE_PATH:/home/priyeshmishra/CodeBase/Includes
-# CMake auto running and building for c++
-alias brr="~/CodeBase/bash++/buildRelease.sh"
-alias bd="~/CodeBase/bash++/buildDebug.sh"
-alias rd="~/CodeBase/bash++/runDebug.sh"
-alias br="~/CodeBase/bash++/buildRun.sh"
-alias bc="~/CodeBase/bash++/buildClean.sh"
-alias gcd="~/CodeBase/bash++/cmakeGenerate.sh"
-alias rr="~/CodeBase/bash++/singleRun.sh"
-alias cr="~/CodeBase/bash++/cmakeRun.sh"
-alias rrd="~/CodeBase/bash++/singleDebug.sh"
+
 # System Maintenance scripts
 alias cpum="sudo ~/CodeBase/bash++/sysMng/cpuManager.sh"
 alias sysm="sudo ~/CodeBase/bash++/sysMng/sysMaintenance.sh"
-alias bb="sudo ~/CodeBase/bash++/sysMng/borgBackup.sh"
+alias borgBackup="sudo ~/CodeBase/bash++/sysMng/borgBackup.sh"
+alias predatorSense="sudo ~/CodeBase/bash++/sysMng/predatorSense.sh interactive"
+
 # Zen mode bonsai script
 alias bonsai="~/CodeBase/bash++/sysMng/bonsai.sh"
 

@@ -24,10 +24,11 @@ return {
   warn_about_missing_glyphs = false,
   adjust_window_size_when_changing_font_size = false,
 
-  -- Cursor
   colors = {
-    cursor_bg = "#FFFFFF",
+    foreground = "#C0C0C0",
+    background = "#000000",
+    cursor_bg = "#FF0000",
     cursor_fg = "#000000",
-    cursor_border = "#FFFFFF",
+    cursor_border = "#FF0000",
   },
 }
