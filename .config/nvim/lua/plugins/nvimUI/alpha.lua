@@ -75,13 +75,22 @@ return {
     dashboard.section.header.val = headers[math.random(#headers)]
 
     dashboard.section.buttons.val = {
-      dashboard.button('f', '  Find File', ':Telescope find_files <CR>'),
       dashboard.button('n', '  New File', ':ene <BAR> startinsert <CR>'),
-      dashboard.button('r', '  Recent Files', ':Telescope oldfiles <CR>'),
-      dashboard.button('d', '  Neovim Dotfiles',
+      dashboard.button('s', '  Graphics Programming',
+        ':lua require("oil").open("/home/priyeshmishra/CodeBase/OpenGL/")<CR>'),
+      dashboard.button('f', '󱓈  Ray Tracing',
+        ':lua require("oil").open("/home/priyeshmishra/CodeBase/RayTracing/")<CR>'),
+      dashboard.button('d', '  Neovim Dotfiles',
         ':lua require("oil").open("/home/priyeshmishra/dotfiles/.config/nvim/")<CR>'),
       dashboard.button('q', '  Quit NVIM', ':qa<CR>'),
     }
+    --       󱎘    󰣇    󰒲  󰁨  󰚰  󰤄      󰨣
+    -- 󰈸  󰡯    󰱬  󰙨  󱓈  󰍛  󰈐  󰈮  󰊖  󰓃  󰆧  󰆫  󰇘
+    -- 󰚩  󰙰    󰜫    󰑓  󰙱  󰨊    󰊕  
+    -- 󰍉    󰉋  󰈞  󰥨  󰩬  󰋜  󱂬    󰌾  󰕥
+    --   →  →    →  󰙨  →  󰍛
+    --   󰡯  󰙨  󰍛  󰈐  󰈮  󰆫
+    -- 󰌢  󰙳  󰟾    
 
     local fortune = require 'alpha.fortune'
     dashboard.section.footer.val = fortune()

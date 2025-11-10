@@ -32,22 +32,6 @@ return {
       }
     end,
   },
-
-  -- ╭─────────────────────────────────────────────────────────╮
-  -- │                   TODO-COMMENTS.NVIM                    │
-  -- ╰─────────────────────────────────────────────────────────╯
-  -- {
-  --   'folke/todo-comments.nvim',
-  --   event = { 'BufReadPre', 'BufNewFile' },
-  --   keys = {
-  --     { '<leader>tq', '<cmd>TodoQuickFix<cr>', desc = 'Todo QuickFix' },
-  --     { '<leader>tl', '<cmd>TodoLocList<cr>', desc = 'Todo LocList' },
-  --     { '<leader>ts', '<cmd>TodoTelescope<cr>', desc = 'Todo Telescope' },
-  --   },
-  --   dependencies = { 'nvim-lua/plenary.nvim' },
-  --   opts = {},
-  -- },
-
   -- ╭─────────────────────────────────────────────────────────╮
   -- │                    COMMENT-BOX.NVIM                     │
   -- ╰─────────────────────────────────────────────────────────╯
@@ -64,20 +48,5 @@ return {
     opts = {
       line_width = 60,
     },
-  },
-
-  -- ╭─────────────────────────────────────────────────────────╮
-  -- │                   NVIM-COMMENT-FRAME                    │
-  -- ╰─────────────────────────────────────────────────────────╯
-  {
-    's1n7ax/nvim-comment-frame',
-    event = 'VeryLazy',
-    enabled = true,
-    keys = {
-      { '<leader>cs', desc = 'Single Comment Frame' },
-      { '<leader>cm', desc = 'Multi Comment Frame' },
-    },
-    dependencies = 'nvim-treesitter',
-    config = true,
   },
 }

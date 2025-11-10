@@ -72,12 +72,11 @@ return {
 
       local found = nil
 
-      -- Start walking upward until we hit root or find a root marker
       while path and path ~= "/" do
         for _, marker in ipairs(markers) do
           local candidate = path .. "/" .. marker
           if vim.fn.filereadable(candidate) == 1 or vim.fn.isdirectory(candidate) == 1 then
-            found = path -- don't return early; keep going up
+            found = path
           end
         end
         path = vim.fs.dirname(path)
@@ -116,10 +115,7 @@ return {
     -----------------------------------------------------------
     local map = vim.keymap.set
     local opts = { noremap = true, silent = true }
-    map("n", "<leader>tc", "<cmd>ToggleTerm<CR>", { desc = "Toggle default terminal" })
     map("n", "<leader>tf", _FLOAT_TERM, { desc = "Toggle floating terminal" })
-    map("n", "<leader>tv", "<cmd>ToggleTerm direction=vertical<CR>", { desc = "Toggle vertical terminal" })
-    map("n", "<leader>th", "<cmd>ToggleTerm direction=horizontal<CR>", { desc = "Toggle horizontal terminal" })
     map("n", "<leader>tt", _PROJECT_TERM, { desc = "Terminal (cwd of file)" })
     map("n", "<leader>tr", _PROJECT_ROOT_TERM, { desc = "Terminal at project root" })
   end,

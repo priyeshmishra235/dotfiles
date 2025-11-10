@@ -1,12 +1,16 @@
-#  Aliases 
-#
+# Only start tmux if not already inside tmux
+if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
+    tmux attach -t default || tmux new -s default
+fi
+
 export PATH="$HOME/.cargo/bin:$PATH"
 
+#  Aliases 
 # System Maintenance scripts
-alias cpum="sudo ~/CodeBase/bash++/sysMng/cpuManager.sh"
-alias sysm="sudo ~/CodeBase/bash++/sysMng/sysMaintenance.sh"
-alias borgBackup="sudo ~/CodeBase/bash++/sysMng/borgBackup.sh"
-alias predatorSense="sudo ~/CodeBase/bash++/sysMng/predatorSense.sh interactive"
+alias cpum="sudo ~/dotfiles/CodeBase/bash++/sysMng/cpuManager.sh"
+alias sysm="sudo ~/dotfiles/CodeBase/bash++/sysMng/sysMaintenance.sh"
+alias borgBackup="sudo ~/dotfiles/CodeBase/bash++/sysMng/borgBackup.sh"
+alias predatorSense='sudo ~/dotfiles/CodeBase/bash++/sysMng/predatorSense.sh interactive'
 
 # Zen mode bonsai script
 alias bonsai="~/CodeBase/bash++/sysMng/bonsai.sh"
