@@ -3,7 +3,7 @@
 This repository contains the configuration (dotfiles) for my personal system setup an managed using [GNU Stow](https://www.gnu.org/software/stow/).
 
 My configs are visually super minimalistic.
-From neovim to kitty to wezterm.
+From neovim to kitty to wezterm to tmux.
 
 ## Images
 ![Dashboard](screenshots/Neovim_Alpha.png)
