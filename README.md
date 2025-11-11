@@ -2,6 +2,21 @@
 
 This repository contains the configuration (dotfiles) for my personal system setup an managed using [GNU Stow](https://www.gnu.org/software/stow/).
 
+My configs are visually super minimalistic.
+From neovim to kitty to wezterm.
+
+## Images
+![Dashboard](screenshots/Neovim_Alpha.png)
+---
+![Startup time](screenshots/Lazy_profiler.png)
+---
+![Plugins loaded](screenshots/Lazy_1.png)
+---
+![Plugins loaded](screenshots/Lazy_2.png)
+---
+![Kitty](screenshots/Kitty.png)
+---
+![Wezterm](screenshots/Wezterm.png)
 ---
 
 ## Requirements

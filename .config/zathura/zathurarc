@@ -11,11 +11,16 @@ set adjust-open "best-fit"
 # One page per row by default
 set pages-per-row 1
 
-#stop at page boundries
+#stop at page boundaries
 set scroll-page-aware "true"
 set smooth-scroll "true"
 set scroll-full-overlap 0.01
-set scroll-step 100
+set scroll-step 150
+set render-loading "false"
+set selection-clipboard clipboard
+
+# Status Line
+set statusbar-basename true
 
 #zoom settings
 set zoom-min 10
@@ -27,8 +32,8 @@ set font "inconsolata 15"
 set default-bg "#000000" #00
 set default-fg "#F7F7F6" #01
 
-set statusbar-fg "#B0B0B0" #04
-set statusbar-bg "#202020" #01
+# set statusbar-fg "#B0B0B0" #04
+# set statusbar-bg "#202020" #01
 
 set inputbar-bg "#151515" #00 currently not used
 set inputbar-fg "#FFFFFF" #02
@@ -51,21 +56,18 @@ set completion-fg "#E0E0E0" #0C
 set notification-bg "#90A959" #0B
 set notification-fg "#151515" #00
 
-set recolor "true"
+set recolor "false"
 set recolor-lightcolor "#000000" #00
 set recolor-darkcolor "#E0E0E0" #06
 set recolor-reverse-video "true"
 set recolor-keephue "true"
 
 
-set render-loading "false"
-set scroll-step 60
 unmap f
 map f toggle_fullscreen
 map [fullscreen] f toggle_fullscreen
 unmap zi
 unmap zo
 map i zoom in
+map t toggle_statusbar
 map o zoom out
-
-set selection-clipboard clipboard
