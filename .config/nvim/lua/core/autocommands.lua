@@ -3,7 +3,7 @@
 -- ╰────────────────────────────────╯
 vim.api.nvim_create_autocmd('VimEnter', {
   callback = function()
-    vim.cmd('cd ' .. vim.fn.expand('$HOME'))
+    vim.cmd('cd ' .. vim.fn.expand('$HOME/CodeBase/'))
   end,
 })
 ----------------------------------------------------------------------

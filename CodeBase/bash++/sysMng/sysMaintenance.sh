@@ -64,6 +64,51 @@ cleanup_system() {
     echo -e "\n${GREEN}[*] Installed kernel-related packages...${NC}"
     pacman -Q | grep -E '^linux'
 
+    # --- SNAP CLEANUP ---
+    echo -e "\n${GREEN}[*] Cleaning Snap cache and old revisions...${NC}"
+    if command -v snap &>/dev/null; then
+
+        # Remove disabled/old revisions
+        disabled=$(snap list --all | awk '/disabled/{print $1, $3}')
+        if [[ -n "$disabled" ]]; then
+            while read -r name ver; do
+                sudo snap remove --purge "$name" --revision="$ver"
+            done <<< "$disabled"
+        else
+            echo -e "${YELLOW}[!] No old Snap revisions found.${NC}"
+        fi
+
+        # Clear snapd cache directory
+        sudo rm -rf /var/lib/snapd/cache/* 2>/dev/null
+
+        # Remove unused .snap blobs
+        sudo find /var/lib/snapd/snaps/ -name "*.snap" -type f -delete 2>/dev/null
+
+    else
+        echo -e "${YELLOW}[!] Snapd not installed. Skipping Snap cleanup.${NC}"
+    fi
+
+    # --- FLATPAK CLEANUP ---
+    echo -e "\n${GREEN}[*] Cleaning Flatpak cache and unused runtimes...${NC}"
+    if command -v flatpak &>/dev/null; then
+
+        # Remove unused runtimes
+        flatpak uninstall --unused -y
+
+        # Clean user cache
+        rm -rf ~/.cache/flatpak/* 2>/dev/null
+        rm -rf ~/.var/app/*/cache/* 2>/dev/null
+
+        # Clean system cache
+        sudo rm -rf /var/cache/flatpak/* 2>/dev/null
+
+        # Remove leftover deployment directories
+        sudo find /var/lib/flatpak -type d -name 'deploy' -prune -exec rm -rf {} + 2>/dev/null
+
+    else
+        echo -e "${YELLOW}[!] Flatpak not installed. Skipping Flatpak cleanup.${NC}"
+    fi
+
     echo -e "\n${CYAN}[+] System Cleanup completed successfully!${NC}"
 }
 
