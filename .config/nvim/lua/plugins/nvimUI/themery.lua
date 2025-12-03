@@ -18,7 +18,7 @@ return {
   -- { 'sainnhe/everforest' },
   -- { 'rebelot/kanagawa.nvim' },
   -- { 'navarasu/onedark.nvim' },
-  -- { 'projekt0n/github-nvim-theme' }, -- standard
+  -- { 'projekt0n/github-nvim-theme' },      -- standard
   -- { 'huyvohcmc/atlas.vim' },--// minimal theme
   { 'nyoom-engineering/oxocarbon.nvim' }, --// i like it
   { 'miikanissi/modus-themes.nvim' },     -- i like it too

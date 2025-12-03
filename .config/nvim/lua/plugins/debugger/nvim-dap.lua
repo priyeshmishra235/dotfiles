@@ -15,7 +15,6 @@ return {
     keymap('n', '<F7>', dap.step_into)
     keymap('n', '<F8>', dap.step_out)
     keymap('n', '<Leader>b', dap.toggle_breakpoint)
-    -- keymap('n', '<Leader>B', function() dap.set_breakpoint() end)
     keymap('n', '<Leader>lp', function()
       dap.set_breakpoint(nil, nil, vim.fn.input('Log point message: '))
     end)
@@ -64,7 +63,6 @@ return {
           local cmake_root = find_top_level_cmake(filepath)     -- top-most cmake root, if any
 
           if cmake_root then
-            --CMake project: look for executable in build dir
             local bin_dir = cmake_root .. "/build/"
             local handle = io.popen("find '" .. bin_dir .. "' -type f -executable | head -n 1")
             local binary = handle:read("*a"):gsub("%s+$", "")
