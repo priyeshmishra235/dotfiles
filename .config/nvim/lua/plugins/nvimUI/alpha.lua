@@ -58,14 +58,14 @@ return {
     dashboard.section.header.val = headers[math.random(#headers)]
 
     dashboard.section.buttons.val = {
-      dashboard.button('n', '  New File', ':ene <BAR> startinsert <CR>'),
-      dashboard.button('s', '  Graphics Programming',
+      dashboard.button('e', '  New File', ':ene <BAR> startinsert <CR>'),
+      dashboard.button('g', '  Graphics Programming',
         ':lua require("oil").open("/home/priyeshmishra/CodeBase/OpenGL/")<CR>'),
-      dashboard.button('f', '󱓈  Ray Tracing',
+      dashboard.button('r', '󱓈  Ray Tracing',
         ':lua require("oil").open("/home/priyeshmishra/CodeBase/RayTracing/")<CR>'),
-      dashboard.button('w', '  Neovim Dotfiles',
+      dashboard.button('n', '  Neovim Dotfiles',
         ':lua require("oil").open("/home/priyeshmishra/dotfiles/.config/nvim/")<CR>'),
-      dashboard.button('g', '󰌢  Hyprland Dotfiles',
+      dashboard.button('h', '󰌢  Hyprland Dotfiles',
         ':lua require("oil").open("/home/priyeshmishra/.config/hypr/")<CR>'),
       dashboard.button('q', '  Quit NVIM', ':qa<CR>'),
     }

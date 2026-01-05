@@ -8,6 +8,7 @@
 # neofetch
 
 #  Aliases 
+export STEAM_ENABLE_WAYLAND=1
 # Override aliases here or in '~/.zshrc' (already set in .zshenv)
 
 # # Helpful aliases
