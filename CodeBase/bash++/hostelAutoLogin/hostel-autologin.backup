@@ -1,0 +1,70 @@
+#!/bin/bash
+
+INTERFACE="$1"
+EVENT="$2"
+
+USER="priyeshmishra"
+USER_ID=$(id -u "$USER")
+RUNTIME_DIR="/run/user/$USER_ID"
+STATE_FILE="/run/hostel_last_ssid"
+
+HOSTEL_SSIDS=(
+  "Boys_Hostel_4"
+  "Boys_Hostel_4B"
+)
+
+USERNAME="__USERNAME__"
+PASSWORD="__PASSWORD__"
+
+get_active_ssid() {
+  nmcli -g GENERAL.CONNECTION device show "$INTERFACE"
+}
+
+is_hostel_wifi() {
+  local ssid="$1"
+  for h in "${HOSTEL_SSIDS[@]}"; do
+    [[ "$ssid" == "$h" ]] && return 0
+  done
+  return 1
+}
+
+notify() {
+  sudo -u "$USER" \
+    DISPLAY=:0 \
+    XDG_RUNTIME_DIR="$RUNTIME_DIR" \
+    notify-send "$1" "$2"
+}
+
+login_hostel() {
+  sudo -u "$USER" curl -ks -X POST "https://172.16.254.254:8090/login.xml" \
+    -H "Content-Type: application/x-www-form-urlencoded" \
+    --data-raw "mode=191&username=$USERNAME&password=$PASSWORD&producttype=0"
+}
+
+logout_hostel() {
+  sudo -u "$USER" curl -ks -X POST "https://172.16.254.254:8090/logout.xml" \
+    -H "Content-Type: application/x-www-form-urlencoded" \
+    --data-raw "mode=193&username=$USERNAME&producttype=0"
+}
+
+# -------- CONNECT --------
+if [[ "$EVENT" == "up" ]]; then
+  SSID=$(get_active_ssid)
+  if is_hostel_wifi "$SSID"; then
+    echo "$SSID" > "$STATE_FILE"
+    login_hostel &
+    notify "Hostel Wi-Fi" "Connected to $SSID\nLogging in…"
+  fi
+fi
+
+# -------- DISCONNECT --------
+if [[ "$EVENT" == "down" ]]; then
+  if [[ -f "$STATE_FILE" ]]; then
+    LAST_SSID=$(cat "$STATE_FILE")
+    if is_hostel_wifi "$LAST_SSID"; then
+      logout_hostel &
+      notify "Hostel Wi-Fi" "Disconnected from $LAST_SSID\nLogged out"
+    fi
+    rm -f "$STATE_FILE"
+  fi
+fi
