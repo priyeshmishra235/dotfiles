@@ -1,108 +1,166 @@
 #!/bin/bash
-
 # === CPU Core and Frequency Manager ===
-# 🧠 Enables/disables CPU cores and adjusts CPU frequency on Arch Linux
-# Below is for enabling igpu and disabling dgpu
-# sudo envycontrol -s integrated --dm sddm
-# Requires root privileges
+# Intel HX-class CPU safe power control
+# Requires root
+
 if [[ $EUID -ne 0 ]]; then
-  echo -e "\033[1;31mPlease run this script with root privileges.\033[0m"
+  echo "Run as root"
   exit 1
 fi
 
-# --- Menu ---
-echo -e "\n\033[1;34m===============================\033[0m"
-echo -e "\033[1;32m🔧 CPU Manager for Arch Linux\033[0m"
-echo -e "\033[1;34m===============================\033[0m"
-echo -e "1) \033[1;33mDisable CPUs from cpu1 to cpu23\033[0m"
-echo -e "2) \033[1;33mEnable all CPUs (cpu1 to cpu23)\033[0m"
-echo -e "3) \033[1;33mSet CPU frequency range\033[0m"
-echo -e "4) \033[1;33mDisable CPUs from a specific starting CPU\033[0m"
-echo -e "5) \033[1;33mToggle Intel Turbo Boost\033[0m"
-echo -e "6) \033[1;31mQuit\033[0m"
-echo -e "\033[1;34m===============================\033[0m"
-read -p "Enter your choice [1-6]: " choice
+PSTATE="/sys/devices/system/cpu/intel_pstate/no_turbo"
+RAPL="/sys/class/powercap/intel-rapl:0"
+BAT="/sys/class/power_supply/BAT1/status"
+
+# ---------------- TURBO ----------------
+enable_turbo() {
+    cpupower frequency-set -g performance >/dev/null 2>&1
+    echo 0 > "$PSTATE"
+}
+
+disable_turbo() {
+    echo 1 > "$PSTATE"
+    cpupower frequency-set -g powersave >/dev/null 2>&1
+}
+
+turbo_status() {
+    [[ "$(cat $PSTATE)" == "0" ]] && echo "ON" || echo "OFF"
+}
+
+# ---------------- POWER MODE ----------------
+set_power_mode() {
+    echo "1) Performance"
+    echo "2) Balanced"
+    echo "3) Powersave"
+    read -p "Mode: " mode
+
+    case "$mode" in
+        1)
+            cpupower frequency-set -g performance
+            for c in /sys/devices/system/cpu/cpu*/power/energy_perf_bias; do
+                echo 0 > "$c" 2>/dev/null
+            done
+            ;;
+        2)
+            cpupower frequency-set -g schedutil
+            for c in /sys/devices/system/cpu/cpu*/power/energy_perf_bias; do
+                echo 6 > "$c" 2>/dev/null
+            done
+            ;;
+        3)
+            cpupower frequency-set -g powersave
+            for c in /sys/devices/system/cpu/cpu*/power/energy_perf_bias; do
+                echo 15 > "$c" 2>/dev/null
+            done
+            ;;
+    esac
+}
+
+# ---------------- RAW POWER LIMITS ----------------
+set_power_limits() {
+    if [[ ! -d "$RAPL" ]]; then
+        echo "RAPL not supported"
+        return
+    fi
+
+    read -p "PL1 (watts): " pl1
+    read -p "PL2 (watts): " pl2
+
+    echo $((pl1*1000000)) > "$RAPL/constraint_0_power_limit_uw"
+    echo $((pl2*1000000)) > "$RAPL/constraint_1_power_limit_uw"
+
+    echo "Power limits applied"
+}
+
+# ---------------- POWER PROFILES ----------------
+apply_limits() {
+    echo "$1" > "$RAPL/constraint_0_power_limit_uw"
+    echo "$2" > "$RAPL/constraint_1_power_limit_uw"
+}
+
+set_power_profile() {
+    if [[ ! -d "$RAPL" ]]; then
+        echo "RAPL not supported"
+        return
+    fi
+
+    echo "1) Study     (12W / 15W)"
+    echo "2) Normal    (18W / 22W)"
+    echo "3) AC Power  (55W / 80W)"
+    echo "4) Emergency (8W / 10W)"
+    echo "5) Auto (battery aware)"
+    read -p "Select profile: " p
+
+    case "$p" in
+        1) apply_limits 12000000 15000000 ;;
+        2) apply_limits 18000000 22000000 ;;
+        3) apply_limits 55000000 80000000 ;;
+        4) apply_limits 8000000 10000000 ;;
+        5)
+            if grep -q "Discharging" "$BAT"; then
+                apply_limits 12000000 15000000
+            else
+                apply_limits 55000000 80000000
+            fi
+            ;;
+        *) echo "Invalid profile" ;;
+    esac
+}
+
+# ---------------- P / E CORES ----------------
+set_core_freqs() {
+    read -p "P-core max GHz: " p
+    read -p "E-core max GHz: " e
+
+    for cpu in /sys/devices/system/cpu/cpu[0-9]*; do
+        id=$(basename "$cpu" | tr -d cpu)
+        if (( id < 16 )); then
+            echo $((p*1000000)) > "$cpu/cpufreq/scaling_max_freq"
+        else
+            echo $((e*1000000)) > "$cpu/cpufreq/scaling_max_freq"
+        fi
+    done
+
+    echo "Cluster limits set"
+}
+
+# ---------------- MENU ----------------
+echo "=========================="
+echo "CPU Manager"
+echo "=========================="
+echo "1) Disable CPUs 1–23"
+echo "2) Enable CPUs 1–23"
+echo "3) Set CPU frequency range"
+echo "4) Disable CPUs from index"
+echo "5) Toggle Turbo"
+echo "6) Set Power Mode (governor + HWP)"
+echo "7) Set PL1 / PL2 (manual watts)"
+echo "8) Power Profiles (study / ac / auto)"
+echo "9) Set P-core / E-core max freq"
+echo "10) Quit"
+echo "=========================="
+read -p "Choice: " choice
 
 case "$choice" in
-  1)
-    # Disable CPUs from cpu2 to cpu23
-    echo -e "\033[1;34mDisabling CPUs from cpu1 to cpu23...\033[0m"
-    for cpu in $(seq 1 23); do
-        echo 0 > /sys/devices/system/cpu/cpu$cpu/online
-    done
-    echo -e "\033[1;32m✅ CPUs 1 to 23 have been disabled.\033[0m"
-    echo -e "ℹ️ \033[1;33mCPU0 cannot be disabled.\033[0m"
-    ;;
-
-  2)
-    # Enable all CPUs
-    echo -e "\033[1;34mEnabling all CPUs from cpu1 to cpu23...\033[0m"
-    for cpu in $(seq 1 23); do
-        echo 1 > /sys/devices/system/cpu/cpu$cpu/online
-    done
-    echo -e "\033[1;32m✅ All CPUs from cpu1 to cpu23 have been enabled.\033[0m"
-    ;;
-
+  1) for cpu in $(seq 1 23); do echo 0 > /sys/devices/system/cpu/cpu$cpu/online; done ;;
+  2) for cpu in $(seq 1 23); do echo 1 > /sys/devices/system/cpu/cpu$cpu/online; done ;;
   3)
-    # Set CPU frequency
-    default_lower="0.8G"
-    read -p "Enter the upper frequency (e.g., 1.0G): " upper_freq
-
-    # Validate if the upper_freq is a valid frequency
-    if [[ ! "$upper_freq" =~ ^[0-9]+(\.[0-9]+)?G$ ]]; then
-      echo -e "\033[1;31m❌ Invalid frequency. Please enter a value like 1.0G.\033[0m"
-      exit 1
-    fi
-    cpupower frequency-set -g powersave -d "$default_lower" -u "$upper_freq"
-    echo -e "\033[1;32m✅ CPU frequency set to range: $default_lower - $upper_freq\033[0m"
+    read -p "Upper GHz: " u
+    cpupower frequency-set -g powersave -d 0.8G -u "$u"
     ;;
-
   4)
-    # Disable CPUs from a specified start CPU
-    echo -e "ℹ️ \033[1;33mCPU0 cannot be disabled.\033[0m"
-    read -p "Enter the start CPU (from cpu1 to cpu23): " start_cpu
-
-    # Validate if start_cpu is a number
-    if ! [[ "$start_cpu" =~ ^[0-9]+$ ]]; then
-        echo -e "\033[1;31m❌ Invalid CPU. Please enter a valid number.\033[0m"
-        exit 1
-    fi
-
-    if [[ "$start_cpu" -lt 1 || "$start_cpu" -gt 23 ]]; then
-        echo -e "\033[1;31m❌ Invalid CPU. Please enter a number between 1 and 23.\033[0m"
-        exit 1
-    fi
-
-    echo -e "\033[1;34mDisabling CPUs from cpu$start_cpu to cpu23...\033[0m"
-    for cpu in $(seq "$start_cpu" 23); do
-        echo 0 > /sys/devices/system/cpu/cpu$cpu/online
-    done
-    echo -e "\033[1;32m✅ CPUs from cpu$start_cpu to cpu23 have been disabled.\033[0m"
+    read -p "Start CPU: " s
+    for cpu in $(seq "$s" 23); do echo 0 > /sys/devices/system/cpu/cpu$cpu/online; done
     ;;
-
   5)
-    # Toggle Intel Turbo Boost
-    echo -e "\033[1;34mToggling Intel Turbo Boost...\033[0m"
-    read -p "Enter 1 to enable Turbo or 0 to disable Turbo: " turbo_choice
-    if [[ "$turbo_choice" -eq 1 ]]; then
-      echo 1 > /sys/devices/system/cpu/intel_pstate/no_turbo
-      echo -e "\033[1;32m✅ Intel Turbo Boost has been enabled.\033[0m"
-    elif [[ "$turbo_choice" -eq 0 ]]; then
-      echo 0 > /sys/devices/system/cpu/intel_pstate/no_turbo
-      echo -e "\033[1;32m✅ Intel Turbo Boost has been disabled.\033[0m"
-    else
-      echo -e "\033[1;31m❌ Invalid choice. Please enter 1 or 0.\033[0m"
-    fi
+    echo "Turbo is $(turbo_status)"
+    read -p "1=Enable 0=Disable: " t
+    [[ "$t" == "1" ]] && enable_turbo || disable_turbo
     ;;
-
-  6)
-    # Quit the script
-    echo -e "\033[1;31m👋 Exiting...\033[0m"
-    exit 0
-    ;;
-
-  *)
-    echo -e "\033[1;31m❌ Invalid choice. Exiting.\033[0m"
-    exit 1
-    ;;
+  6) set_power_mode ;;
+  7) set_power_limits ;;
+  8) set_power_profile ;;
+  9) set_core_freqs ;;
+  10) exit 0 ;;
+  *) echo "Invalid" ;;
 esac

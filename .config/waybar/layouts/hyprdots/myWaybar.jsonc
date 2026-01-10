@@ -22,7 +22,7 @@
             "custom/updates",
             "tray",
             "battery",
-            "custom/swaync",
+            // "custom/swaync",
             "custom/hyde-menu"
         ]
     }

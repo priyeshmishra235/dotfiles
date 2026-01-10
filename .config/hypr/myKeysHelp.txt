@@ -1,0 +1,89 @@
+# see https://wiki.hyprland.org/configuring/keywords/ for more
+# example binds, see https://wiki.hyprland.org/configuring/binds/ for more
+
+#? ------- KEYBINDS_HYPRLAND_V_0_53 COMPATIBLE ----------------
+#   This Config is compatible with keybinding changes in Hyprland v0.53+
+#   To ensure your system is working we will not disable this block
+#   User template files will be provided in $XDG_DATA_HOME/hyde/templates/hypr/keybindings.conf for manual update.
+
+#? ------- Grouping of binds for easier management ----------------
+#  $d=[Group Name|Subgroup Name1|Subgroup Name2|...]
+# '$d' is a variable that is used to group binds together (or use another variable)
+# This is only for organization purposes and is not a defined hyprland variable
+# What we did here is to modify the Description of the binds to include the group name
+# The $d will be parsed as a separate key to be use for a GUI or something pretty
+# [Main|Subgroup1|Subgroup2|...]
+# Main - The main groupname
+# Subgroup1.. - The subgroup names can be use to avoid repeating the same description
+
+# NOTE:
+# key: 156 → sym: XF86Launch1  -> this is PredatorSense key
+# Caps_Lock  --> for capslock
+
+#### Below does same with or without numlock ####
+# For numpad to use number keys:
+# → KP_0, KP_1, ..., KP_9
+
+# For numpad Num Lock:
+# → numbers behave as numbers
+# → . (Decimal) behaves as KP_Delete instead of KP_Decimal
+
+# ╭───────────────────────────────╮
+# │ For numpad with Num Lock OFF: │
+# ╰───────────────────────────────╯
+# 1 → KP_End
+# 2 → KP_Down
+# 3 → KP_Next
+# 4 → KP_Left
+# 5 → KP_Begin
+# 6 → KP_Right
+# 7 → KP_Home
+# 8 → KP_Up
+# 9 → KP_Prior
+# 0 → KP_Insert
+
+# . (Decimal)     → KP_Decimal
+
+# These remain the same even when Num Lock is ON:
+# Enter           → KP_Enter
+# + (Add)         → KP_Add
+# - (Subtract)    → KP_Subtract
+# * (Multiply)    → KP_Multiply
+# / (Divide)      → KP_Divide
+########################################
+
+# Function keys without pressing Fn → F1 to F12
+# By pressing Fn key, they are in some special format not listed above
+
+# ╭─────────────────────────────────────────────────────────────────╮
+# │ xmodmap:  up to 4 keys per modifier, (keycodes in parentheses): │
+# ╰─────────────────────────────────────────────────────────────────╯
+# shift       Shift_L (0x32),  Shift_R (0x3e)
+# lock        Caps_Lock (0x42)
+# control     Control_L (0x25),  Control_R (0x69)
+# mod1        Alt_L (0x40),  Alt_R (0x6c),  Alt_L (0xcc),  Meta_L (0xcd)
+# mod2        Num_Lock (0x4d)
+# mod3        ISO_Level5_Shift (0xcb)
+# mod4        Super_L (0x85),  Super_R (0x86),  Super_L (0xce)
+# mod5        ISO_Level3_Shift (0x5c)
+
+# ╭──────────────────────────────────────────────────╮
+# │ Mouse key codes based on current windows mapping │
+# ╰──────────────────────────────────────────────────╯
+# mouse:272 #left click
+# mouse:273 #right click
+# mouse:274 #middle click
+# mouse:275 #side left thumb lower
+# mouse:276 #side left thumb upper
+# mouse:180 #left left
+# mouse:174 #middle middle
+# mouse:225 #middle bottom
+
+#? ------- Variables ----------------
+# Default if commented out
+# $mainMod = Super # super / meta / windows key
+# Assign apps
+# $TERMINAL = kitty
+# $EDITOR = code
+# $EXPLORER = dolphin
+# $BROWSER = firefox
