@@ -1,9 +1,0 @@
-return {
-  event = 'CmdlineEnter',
-  lazy = true,
-  'Eandrju/cellular-automaton.nvim',
-  vim.keymap.set('n', 'cam', '<cmd>CellularAutomaton make_it_rain<CR>'),
-  vim.keymap.set('n', 'cal', '<cmd>CellularAutomaton game_of_life<CR>'),
-  vim.keymap.set('n', 'cas', '<cmd>CellularAutomaton scramble<CR>'),
-  --You can close animation window with one of: q/<Esc>/<CR>
-}

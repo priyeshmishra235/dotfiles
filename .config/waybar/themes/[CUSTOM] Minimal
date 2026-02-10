@@ -1,0 +1,23 @@
+{
+"include": "~/.config/waybar/modules",
+"layer": "top",
+"position": "top",
+"width": 1050,
+"margin-top": 3,
+
+"modules-left": [
+  "clock",
+  ],
+
+"modules-center": [
+  "hyprland/workspaces#roman"
+  ],
+
+"modules-right": [
+  "custom/menu",
+  "tray",
+  "bluetooth",
+  "battery",
+  "idle_inhibitor"
+  ],
+}
