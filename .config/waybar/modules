@@ -223,9 +223,9 @@
     //"format": "{:%I:%M %p}", // AM PM format // no icon
     //"format": " {:%I:%M %p}", // AM PM format
     //"format": " {:%H:%M:%S}",
+    //"format-alt": " {:%H:%M  %d %B %A}",
 
-    "format": "{:%I:%M %p, %d %B, %A}", // AM PM format // with minimal data
-    "format-alt": " {:%H:%M  %d %B %A}",
+    "format": "{:%I:%M %p<span color='#ffffff'> | </span><span color='#ffcc66'>%d %B %A</span>}",
     "tooltip-format": "<tt><small>{calendar}</small></tt>",
     "calendar": {
       "mode"          : "year",

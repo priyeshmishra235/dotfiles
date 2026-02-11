@@ -1,1 +1,0 @@
-../../../dotfiles/.config/zsh/functions/error-handlers.zsh

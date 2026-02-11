@@ -1,1 +1,0 @@
-../../../dotfiles/.config/zsh/conf.d/00-hyde.zsh

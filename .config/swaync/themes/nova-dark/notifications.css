@@ -27,6 +27,26 @@
   padding: 0px;
 }
 
+.notification progressbar {
+    margin: 15px 10px 5px 10px;
+}
+
+.notification progressbar trough {
+    min-width: 260px;
+    min-height: 8px;
+    background-color: alpha(@background-alt, 0.5); /* Semi-transparent track */
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.05); /* Very subtle border */
+}
+
+/* The actual colored "fill" */
+.notification progressbar trough progress {
+    min-height: 8px;
+    border-radius: 10px;
+    background: linear-gradient(90deg, @selected 0%, @hover 100%); /* Gradient fill */
+    box-shadow: 0px 0px 8px alpha(@selected, 0.4);
+}
+
 .floating-notifications.background .notification-row .notification-background {
   background: alpha(@background, .55);
   box-shadow: 0 0 8px 0 rgba(0,0,0,.6);
