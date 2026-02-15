@@ -54,14 +54,20 @@ brightness_down() {
 # │                           MENU                           │
 # ╰──────────────────────────────────────────────────────────╯
 case "$1" in
-  mute)        toggle_sink_mute ;;
-  micmute)     toggle_source_mute ;;
-  volup)       wpctl set-volume "$SINK" 5%+; notify_volume ;;
-  voldown)     wpctl set-volume "$SINK" 5%-; notify_volume ;;
-  brightup)    brightness_up ;;
-  brightdown)  brightness_down ;;
-  *)
-    echo "Usage: hardware_control.sh {mute|micmute|volup|voldown|brightup|brightdown}"
-    exit 1
-    ;;
+mute) toggle_sink_mute ;;
+micmute) toggle_source_mute ;;
+volup)
+  wpctl set-volume "$SINK" 5%+
+  notify_volume
+  ;;
+voldown)
+  wpctl set-volume "$SINK" 5%-
+  notify_volume
+  ;;
+brightup) brightness_up ;;
+brightdown) brightness_down ;;
+*)
+  echo "Usage: hardware_control.sh {mute|micmute|volup|voldown|brightup|brightdown}"
+  exit 1
+  ;;
 esac

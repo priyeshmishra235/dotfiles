@@ -10,9 +10,9 @@ if [[ -z "$PROFILE" ]]; then
 fi
 
 if [[ "$PROFILE" == "personal" ]]; then
-    PROFILE_DIR="$HOME/electron/OneNote"
+  PROFILE_DIR="$HOME/electron/OneNote"
 else
-    PROFILE_DIR="$HOME/electron/OneNote_${PROFILE}"
+  PROFILE_DIR="$HOME/electron/OneNote_${PROFILE}"
 fi
 
 mkdir -p "$PROFILE_DIR"

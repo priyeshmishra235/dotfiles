@@ -24,14 +24,14 @@ mainbox {
     children:                    [ "listview" ];
     background-color:            #000000;
 
-    spacing:                     24px;
+    spacing:                     0px;
     margin:                      0px;
-    padding:                     64px;
+    padding:                     0px;
 }
 
 /* ---- List ---- */
 listview {
-    columns:                     4;
+    columns:                     5;
     lines:                       4;
     cycle:                       true;
     dynamic:                     true;
@@ -66,6 +66,6 @@ element-icon {
     expand:                      false;
     background-color:            #000000;
     text-color:                  inherit;
-    size:                        26%;
+    size:                        22%;
     cursor:                      inherit;
 }

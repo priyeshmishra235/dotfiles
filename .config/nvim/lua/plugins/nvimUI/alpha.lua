@@ -59,10 +59,10 @@ return {
 
     dashboard.section.buttons.val = {
       dashboard.button('e', '  New File', ':ene <BAR> startinsert <CR>'),
-      dashboard.button('g', '  Graphics Programming',
-        ':lua require("oil").open("/home/priyeshmishra/CodeBase/OpenGL/")<CR>'),
-      dashboard.button('r', '󱓈  Ray Tracing',
-        ':lua require("oil").open("/home/priyeshmishra/CodeBase/RayTracing/")<CR>'),
+      -- dashboard.button('g', '  Graphics Programming',
+      --   ':lua require("oil").open("/home/priyeshmishra/CodeBase/OpenGL/")<CR>'),
+      -- dashboard.button('r', '󱓈  Ray Tracing',
+      --   ':lua require("oil").open("/home/priyeshmishra/CodeBase/RayTracing/")<CR>'),
       dashboard.button('n', '  Neovim Dotfiles',
         ':lua require("oil").open("/home/priyeshmishra/dotfiles/.config/nvim/")<CR>'),
       dashboard.button('h', '󰌢  Hyprland Dotfiles',

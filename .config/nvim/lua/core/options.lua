@@ -77,7 +77,7 @@ vim.o.sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,winpos,
 vim.opt.shortmess:append 'c'
 vim.opt.shell = "/bin/zsh"
 vim.opt.confirm = true
-vim.highlight.priorities.semantic_tokens = 95 -- Or any number lower than 100, Treesitter's priority level
+vim.hl.priorities.semantic_tokens = 95 -- Or any number lower than 100, Treesitter's priority level
 
 -- Cursor
 vim.opt.guicursor = {

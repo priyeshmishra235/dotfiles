@@ -72,7 +72,7 @@ vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
   group = group,
   callback = function()
     for _, client in pairs(vim.lsp.get_clients({ bufnr = 0 })) do
-      if client.supports_method('textDocument/documentHighlight') then
+      if client:supports_method('textDocument/documentHighlight') then
         vim.lsp.buf.document_highlight()
         break
       end

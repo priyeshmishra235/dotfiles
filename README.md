@@ -54,3 +54,5 @@ stow . --adopt
 ```
 
 ---
+## Arch + Hyprland Installation
+- to be updated
