@@ -1,21 +1,6 @@
 # see https://wiki.hyprland.org/configuring/keywords/ for more
 # example binds, see https://wiki.hyprland.org/configuring/binds/ for more
 
-#? ------- KEYBINDS_HYPRLAND_V_0_53 COMPATIBLE ----------------
-#   This Config is compatible with keybinding changes in Hyprland v0.53+
-#   To ensure your system is working we will not disable this block
-#   User template files will be provided in $XDG_DATA_HOME/hyde/templates/hypr/keybindings.conf for manual update.
-
-#? ------- Grouping of binds for easier management ----------------
-#  $d=[Group Name|Subgroup Name1|Subgroup Name2|...]
-# '$d' is a variable that is used to group binds together (or use another variable)
-# This is only for organization purposes and is not a defined hyprland variable
-# What we did here is to modify the Description of the binds to include the group name
-# The $d will be parsed as a separate key to be use for a GUI or something pretty
-# [Main|Subgroup1|Subgroup2|...]
-# Main - The main groupname
-# Subgroup1.. - The subgroup names can be use to avoid repeating the same description
-
 # NOTE:
 # key: 156 → sym: XF86Launch1  -> this is PredatorSense key
 # Caps_Lock  --> for capslock
@@ -78,12 +63,3 @@
 # mouse:180 #left left
 # mouse:174 #middle middle
 # mouse:225 #middle bottom
-
-#? ------- Variables ----------------
-# Default if commented out
-# $mainMod = Super # super / meta / windows key
-# Assign apps
-# $TERMINAL = kitty
-# $EDITOR = code
-# $EXPLORER = dolphin
-# $BROWSER = firefox

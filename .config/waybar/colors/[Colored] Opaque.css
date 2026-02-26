@@ -346,7 +346,7 @@ label:focus {
   box-shadow: none;
 }
 
-#pulseaudio-slider trough {
+#pulseaudio-slider through {
   min-width: 80px;
   min-height: 5px;
   border-radius: 5px;
@@ -366,7 +366,7 @@ label:focus {
   box-shadow: none;
 }
 
-#backlight-slider trough {
+#backlight-slider through {
   min-width: 80px;
   min-height: 10px;
   border-radius: 5px;

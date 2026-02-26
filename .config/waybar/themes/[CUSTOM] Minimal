@@ -1,7 +1,7 @@
 {
 "include": "~/.config/waybar/modules",
 "layer": "top",
-"position": "top",
+"position": "bottom",
 "width": 1050,
 "margin-top": 3,
 
@@ -16,7 +16,6 @@
 "modules-right": [
   "custom/menu",
   "tray",
-  "bluetooth",
   "battery",
   "idle_inhibitor"
   ],
