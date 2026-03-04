@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+# depends on font.sh for installing missing fonts
+
 set -euo pipefail
 
 LOCK_DIR="$HOME/.config/hypr/hyprlock"

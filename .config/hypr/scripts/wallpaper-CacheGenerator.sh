@@ -10,7 +10,7 @@ build_thumb() {
   hash=$(printf "%s" "$img" | sha1sum | awk '{print $1}')
   thumb="${thumbCache}/${hash}.png"
 
-  [[ -f "$thumb" ]] && return
+  [[ -f "$thumb" ]] && exit 0
 
   magick "$img" \
     -define jpeg:size=512x512 \
@@ -22,5 +22,6 @@ build_thumb() {
 export -f build_thumb
 export thumbCache
 
-find "$wallpaperDir" -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" \) -print0 |
-  xargs -0 -P 8 -n 1 bash -c 'build_thumb "$0"'
+find "$wallpaperDir" -type f \
+  \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.webp" -o -iname "*.avif" -o -iname "*.png" \) -print0 |
+  parallel -0 -j"$(nproc)" build_thumb

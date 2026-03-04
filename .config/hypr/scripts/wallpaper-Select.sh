@@ -53,19 +53,32 @@ get_static_icon() {
 
   printf "%s" "$cached"
 }
+update_keyboard_rgb() {
+  local wal_colors="$HOME/.cache/wal/colors.sh"
+  local acer_sense_script="$HOME/dotfiles/.config/hypr/scripts/predatorSense.sh"
+
+  source "$wal_colors"
+  local hex_color="${color6#\#}"
+
+  if [[ ! -d "/sys/module/linuwu_sense" ]]; then
+    notify-send "Keyboard RGB Offline" "Linuwu-Sense module is not loaded. Run 'make' in your Linuwu-Sense folder." -i dialog-warning
+    return 1
+  fi
+
+  if ! bash "$acer_sense_script" set-per-zone "${hex_color},${hex_color},${hex_color},${hex_color},25" >/dev/null 2>&1; then
+    notify-send "RGB Sync Failed" "Could not write to hardware. Check sudoers permissions." -i dialog-warning
+  fi
+}
 update_gtk_theme() {
   local oomox_colors="$HOME/.cache/wal/colors-oomox"
   local theme_name="MyDynamicTheme"
 
   if [[ -f "$oomox_colors" ]]; then
-    # 1. Build the theme with GTK3.20+ optimizations
     oomox-cli "$oomox_colors" -o "$theme_name" -t "$HOME/.themes" -m gtk320 >/dev/null 2>&1
 
-    # 2. Sync GTK4/Libadwaita (The "Light Mode" Killer)
     mkdir -p "$HOME/.config/gtk-4.0"
     ln -sf "$HOME/.cache/wal/colors-gtk.css" "$HOME/.config/gtk-4.0/gtk.css"
 
-    # 3. Apply and Refresh
     gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
     gsettings set org.gnome.desktop.interface gtk-theme "Adwaita"
     sleep 0.2
@@ -75,7 +88,9 @@ update_gtk_theme() {
 generate_palette_async() {
   (
     wal -i "$1" --backend colorthief >/dev/null 2>&1
+    update_keyboard_rgb
     update_gtk_theme
+    $HOME/.config/hypr/scripts/refresh.sh
   ) &
 }
 

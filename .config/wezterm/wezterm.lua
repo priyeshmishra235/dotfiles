@@ -6,8 +6,8 @@ wezterm.on('gui-startup', function()
 end)
 
 return {
-  font = wezterm.font("JetBrainsMono Nerd Font", { weight = "Bold" }),
-  font_size = 13.0,
+  font = wezterm.font("JetBrainsMono Nerd Font"),
+  font_size = 12.0,
   window_decorations = "NONE",
   window_background_opacity = 1.0,
   window_padding = { left = 0, right = 0, top = 0, bottom = 0 },
