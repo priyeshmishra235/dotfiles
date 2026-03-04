@@ -1,3 +1,4 @@
 # zsh runtime / generated
 .zsh_history
 .zcompdump*
+.config/mpv/cache/**
