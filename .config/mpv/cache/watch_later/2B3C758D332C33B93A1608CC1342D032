@@ -1,3 +1,0 @@
-start=4473.360000
-speed=1.100000
-af=lavfi=graph=%26%loudnorm=I=-14:TP=-3:LRA=4
