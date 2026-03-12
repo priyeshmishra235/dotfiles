@@ -87,7 +87,10 @@ update_gtk_theme() {
 }
 generate_palette_async() {
   (
-    wal -i "$1" --backend colorthief >/dev/null 2>&1
+    # wal -i "$1" --backend colorthief >/dev/null 2>&1 # for vibrant colors
+    wal -i "$1" --backend haishoku >/dev/null 2>&1 # for more strong colors
+    # wal -i "$1" --backend wal >/dev/null 2>&1 # for balanced colors
+    # wal -i "$1" --backend imagemagick >/dev/null 2>&1 # for accurate colors
     update_keyboard_rgb
     update_gtk_theme
     $HOME/.config/hypr/scripts/refresh.sh

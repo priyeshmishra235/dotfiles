@@ -84,12 +84,12 @@
           "command": "nm-connection-editor"
         },
         {
-          "label": "󰂯",
-          "command": "blueman-manager"
+          "label": "󰆴",
+          "command": "kitty -e ~/.config/hypr/scripts/system-cleanup.sh"
         },
         {
-          "label": "󰏘",
-          "command": "nwg-look"
+          "label": "󰏗",
+          "command": "kitty -e ~/.config/hypr/scripts/system-update.sh"
         }
 
       ]

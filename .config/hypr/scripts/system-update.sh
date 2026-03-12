@@ -6,6 +6,9 @@ exists() {
 
 total_updates=0
 
+echo "Checking for available package updates..."
+echo
+
 # PACMAN
 pacman_updates=0
 if exists pacman; then
@@ -39,6 +42,8 @@ fi
 # No updates
 if [ "$total_updates" -eq 0 ]; then
   echo "System is up to date."
+  echo
+  read -p "Press Enter to close..."
   exit 0
 fi
 
@@ -66,3 +71,5 @@ fi
 }
 [ "$flatpak_updates" -gt 0 ] && flatpak update -y
 [ "$snap_updates" -gt 0 ] && sudo snap refresh
+
+echo "Packages Updated"

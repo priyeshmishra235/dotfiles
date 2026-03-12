@@ -215,7 +215,11 @@ label:focus {
 }
 
 #backlight {
-    color: #cdd6f4;
+    color: #B56BFF;
+}
+
+#custom-swaync{
+  color: #2AF5D5;
 }
 
 #bluetooth {

@@ -9,7 +9,7 @@ SYNC='string:x-canonical-private-synchronous:sys-notify'
 
 notify_volume() {
   vol=$(wpctl get-volume "$SINK" | awk '{print int($2*100)}')
-  notify-send -u low -h int:value:"$vol" -h "$SYNC" "Volume"
+  # notify-send -u low -h int:value:"$vol" -h "$SYNC" "Volume"
 }
 
 toggle_sink_mute() {
@@ -42,12 +42,12 @@ notify_brightness() {
 
 brightness_up() {
   brightnessctl set 1%+
-  notify_brightness
+  # notify_brightness
 }
 
 brightness_down() {
   brightnessctl set 1%-
-  notify_brightness
+  # notify_brightness
 }
 
 # ╭──────────────────────────────────────────────────────────╮
