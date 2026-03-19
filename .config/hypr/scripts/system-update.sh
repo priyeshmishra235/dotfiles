@@ -73,3 +73,6 @@ fi
 [ "$snap_updates" -gt 0 ] && sudo snap refresh
 
 echo "Packages Updated"
+echo
+read -p "Press Enter to close..."
+exit 0

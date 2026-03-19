@@ -39,7 +39,7 @@ listbox {
     spacing:                     2px;
     background-color:            transparent;
     orientation:                 vertical;
-    children:                    [ "inputbar", "message", "listview" ];
+    children:                    [ "inputbar", "listview" ];
 }
 
 /* Listview ---------------------------------------- */
